@@ -1,0 +1,30 @@
+GridBackground {
+    --grid-background-color: rgb(29, 27, 34);
+    --line-color: rgba(193, 196, 192, 0.1);
+    --thick-line-color: rgba(193, 196, 192, 0.1);
+    --spacing: 10;
+}
+
+.graphView {
+    background-color: rgb(27, 22, 31);
+}
+
+/*
+#node-border > VisualElement {
+    background-color: rgb(66, 59, 107);
+}
+*/
+
+.typeFlow > #connector {
+    background-image: resource("Assets/Loki/Res/right-arrow.png");
+    border-radius: 0;
+    border-width: 0;
+    width: 16px;
+    height: 16px;
+}
+ 
+
+
+#title > Port {
+    align-self: center;
+}

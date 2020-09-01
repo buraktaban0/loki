@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d6ff2996-1f46-41af-b7c9-4a3dcb42f3a6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Cleo.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Cleo.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/Stylesheets.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/Stylesheets/LokiNodeView.uss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/Stylesheets/LokiNodeView.uss.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/Stylesheets/LokiStyle.uss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/Stylesheets/LokiStyle.uss.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/UXML.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiNodeView.uxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiNodeView.uxml.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/right-arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/right-arrow.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiFlowPort.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiFlowPort.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiResources.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiResources.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/LokiAssetHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/LokiAssetHandler.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/LokiGraph.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Muhittin (1).fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Muhittin (1).fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Red.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Red.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UIElementsSchema/UIElements.xsd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UIElementsSchema/Unity.Cloud.Collaborate.Components.ChangeListEntries.xsd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UIElementsSchema/Unity.Cloud.Collaborate.Components.xsd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UIElementsSchema/Unity.Cloud.Collaborate.Views.xsd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UIElementsSchema/UnityEditor.Experimental.GraphView.xsd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UIElementsSchema/UnityEditor.PackageManager.UI.xsd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UIElementsSchema/UnityEditor.UIElements.Debugger.xsd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UIElementsSchema/UnityEditor.UIElements.xsd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UIElementsSchema/UnityEngine.UIElements.xsd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../noise-graph/.idea/.idea.ProjectZ/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../noise-graph/.idea/.idea.ProjectZ/.idea/contentModel.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../noise-graph/.idea/.idea.ProjectZ/.idea/indexLayout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../noise-graph/.idea/.idea.ProjectZ/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../noise-graph/.idea/.idea.ProjectZ/.idea/projectSettingsUpdater.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../noise-graph/.idea/.idea.ProjectZ/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../noise-graph/.idea/.idea.ProjectZ/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/LokiGraph.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/LokiGraphNode.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Settings/LokiSettings.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNode.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/LokiNode.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/LokiAssetHandler.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphWindow.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiPort.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Stylesheets/LokiStyle.uss" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Res/Stylesheets/LokiStyle.uss" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiFlowPort.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Res/Stylesheets/LokiNodeView.uss" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiResources.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiNodeView.uss" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiNodeView.uxml" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1gprJMe473dPdHXUJ8E5QgaRaO8" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d6ff2996-1f46-41af-b7c9-4a3dcb42f3a6" name="Default Changelist" comment="" />
+      <created>1598822303417</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1598822303417</updated>
+      <workItem from="1598822316280" duration="3774000" />
+      <workItem from="1598896656435" duration="6364000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>

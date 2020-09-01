@@ -1,0 +1,18 @@
+.LokiNodeView {
+    height: auto;
+    min-width: 120px;
+    min-height: 120px;
+    background-color: rgba(65, 60, 84, 0.87);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 8px;
+    border-left-color: rgba(19, 18, 22, 0.76);
+    border-right-color: rgba(19, 18, 22, 0.76);
+    border-top-color: rgba(19, 18, 22, 0.76);
+    border-bottom-color: rgba(19, 18, 22, 0.76);
+}
