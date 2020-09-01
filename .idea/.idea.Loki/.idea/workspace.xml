@@ -20,42 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6ff2996-1f46-41af-b7c9-4a3dcb42f3a6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Cleo.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Cleo.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/Stylesheets.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/Stylesheets/LokiNodeView.uss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/Stylesheets/LokiNodeView.uss.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/Stylesheets/LokiStyle.uss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/Stylesheets/LokiStyle.uss.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/UXML.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiNodeView.uxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiNodeView.uxml.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/right-arrow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/right-arrow.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiFlowPort.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiFlowPort.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiResources.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiResources.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/LokiAssetHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/LokiAssetHandler.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/LokiGraph.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Muhittin (1).fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Muhittin (1).fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Red.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Red.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UIElementsSchema/UIElements.xsd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UIElementsSchema/Unity.Cloud.Collaborate.Components.ChangeListEntries.xsd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UIElementsSchema/Unity.Cloud.Collaborate.Components.xsd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UIElementsSchema/Unity.Cloud.Collaborate.Views.xsd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UIElementsSchema/UnityEditor.Experimental.GraphView.xsd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UIElementsSchema/UnityEditor.PackageManager.UI.xsd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UIElementsSchema/UnityEditor.UIElements.Debugger.xsd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UIElementsSchema/UnityEditor.UIElements.xsd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UIElementsSchema/UnityEngine.UIElements.xsd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GTLogicGraph" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../noise-graph/.idea/.idea.ProjectZ/.idea/.name" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../noise-graph/.idea/.idea.ProjectZ/.idea/contentModel.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../noise-graph/.idea/.idea.ProjectZ/.idea/indexLayout.xml" afterDir="false" />
@@ -63,6 +28,14 @@
       <change afterPath="$PROJECT_DIR$/../noise-graph/.idea/.idea.ProjectZ/.idea/projectSettingsUpdater.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../noise-graph/.idea/.idea.ProjectZ/.idea/vcs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../noise-graph/.idea/.idea.ProjectZ/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiNodeView.uss" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiNodeView.uss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiStyle.uss" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiStyle.uss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiNodeView.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiNodeView.uxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +43,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D1BEC468-8006-4709-A5E7-13AD543E6D96/9a/57db86d1/ICollectibleElement.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -92,6 +68,11 @@
         <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiNodeView.uss" />
         <option value="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiNodeView.uxml" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiStyle.uss" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiNodeView.uss" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiNodeView.uxml" />
       </list>
     </option>
   </component>
@@ -139,6 +120,7 @@
       <updated>1598822303417</updated>
       <workItem from="1598822316280" duration="3774000" />
       <workItem from="1598896656435" duration="6364000" />
+      <workItem from="1598988945550" duration="10881000" />
     </task>
     <servers />
   </component>

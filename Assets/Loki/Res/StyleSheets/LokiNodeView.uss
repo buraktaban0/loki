@@ -1,18 +1,63 @@
-.LokiNodeView {
-    height: auto;
-    min-width: 120px;
-    min-height: 120px;
-    background-color: rgba(65, 60, 84, 0.87);
-    border-left-width: 1px;
-    border-right-width: 1px;
-    border-top-width: 1px;
-    border-bottom-width: 1px;
-    border-top-left-radius: 16px;
-    border-bottom-left-radius: 8px;
-    border-top-right-radius: 16px;
-    border-bottom-right-radius: 8px;
-    border-left-color: rgba(19, 18, 22, 0.76);
-    border-right-color: rgba(19, 18, 22, 0.76);
-    border-top-color: rgba(19, 18, 22, 0.76);
-    border-bottom-color: rgba(19, 18, 22, 0.76);
+
+LokiNodeView {
+}
+
+.node-corner {
+    border-radius: 16px 16px 8px 8px;
+}
+
+.selection-border {
+    overflow: visible;
+    flex-grow: 1;
+    margin: 2px;
+    border-width: 2px;
+    border-color: rgba(255, 0, 255, 0.7);
+}
+
+
+.unselected {
+    border-color: rgba(0, 0, 0, 0);
+}
+
+.unselected:hover {
+    border-color: rgba(255, 0, 255, 0.2);
+}
+
+.node-root {
+    align-self: stretch;
+    align-items: stretch;
+    justify-content: center;
+    overflow: hidden;
+    flex-grow: 1;
+    flex-shrink: 0;
+    /*padding: 4px;*/
+    background-color: rgba(79, 62, 98, 0.5);
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.base-container {
+    flex-grow: 1;
+    flex-shrink: 0;
+    padding: 6px;
+    min-height: 32px;
+    min-width: 32px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.header-container {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+
+.header-container > Label {
+    font-size: 12px;
+    -unity-font-style: bold;
+    margin: 4px 10px 4px 10px;
+}
+
+.mid-container {
+    background-color: rgba(0, 0, 0, 0.1);
 }

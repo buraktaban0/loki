@@ -26,7 +26,6 @@ public class LokiGraphView : GraphView
 		this.AddElement(node);
 		
 		var nodeView = new LokiNodeView();
-		nodeView.SetPosition(new Rect(new Vector2(300, 300), Vector2.zero));
 		
 		this.AddElement(nodeView);
 	}

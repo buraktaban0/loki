@@ -1,3 +1,18 @@
+.row {
+    flex-direction: row;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.divider-horizontal {
+    height: 1px;
+    width: auto;
+    flex-grow: 1;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
 GridBackground {
     --grid-background-color: rgb(29, 27, 34);
     --line-color: rgba(193, 196, 192, 0.1);
@@ -22,7 +37,6 @@ GridBackground {
     width: 16px;
     height: 16px;
 }
- 
 
 
 #title > Port {
