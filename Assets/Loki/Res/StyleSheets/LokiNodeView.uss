@@ -2,6 +2,10 @@
 LokiNodeView {
 }
 
+LokiNodeView:hover {
+    background-color: aquamarine;
+}
+
 .node-corner {
     border-radius: 16px 16px 8px 8px;
 }
@@ -11,17 +15,17 @@ LokiNodeView {
     flex-grow: 1;
     margin: 2px;
     border-width: 2px;
-    border-color: rgba(255, 0, 255, 0.7);
-}
-
-
-.unselected {
     border-color: rgba(0, 0, 0, 0);
 }
 
-.unselected:hover {
-    border-color: rgba(255, 0, 255, 0.2);
+.selection-border.hover {
+    border-color: rgba(255, 0, 255, 0.3);
 }
+
+.selection-border.selected {
+    border-color: rgba(255, 0, 255, 0.7);
+}
+
 
 .node-root {
     align-self: stretch;

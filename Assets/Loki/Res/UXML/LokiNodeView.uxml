@@ -1,14 +1,14 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements"
          xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements"
          noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="node-root" class="node-root node-corner column" picking-mode="Ignore">
-        <ui:VisualElement name="header-container" class="base-container header-container row" picking-mode="Ignore">
+    <ui:VisualElement name="node-root" class="node-root node-corner column">
+        <ui:VisualElement name="header-container" class="base-container header-container row">
             <ui:Label name="title" class="node-title" text="Dummy Title"/>
         </ui:VisualElement>
-        <ui:VisualElement name="header-mid-divider" class="divider-horizontal" picking-mode="Ignore"/>
-        <ui:VisualElement name="mid-container" class="base-container mid-container row" picking-mode="Ignore">
+        <ui:VisualElement name="header-mid-divider" class="divider-horizontal"/>
+        <ui:VisualElement name="mid-container" class="base-container mid-container row">
 
-            
+
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="selection-border" class="selection-border node-corner">

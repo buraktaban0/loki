@@ -17,10 +17,13 @@ namespace Loki.Editor
 		}
 
 
-		private const string UNSELECTED_CLASS_NAME = "unselected";
+		private const string SELECTED_CLASS_NAME = "selected";
+		private const string HOVER_CLASS_NAME = "hover";
 
 		private VisualElement container;
 		private VisualElement selectionBorder;
+
+		private VisualElement midContainer;
 
 
 		public LokiNodeView()
@@ -42,11 +45,33 @@ namespace Loki.Editor
 			selectionBorder = this.Q<VisualElement>("selection-border");
 			container = this.Q<VisualElement>("node-root");
 
+			midContainer = this.Q<VisualElement>("mid-container");
+
+
+			var port = new LokiPort(Orientation.Horizontal, Direction.Input, Capacity.Single);
+			midContainer.Add(port);
+
 			container.RegisterCallback<GeometryChangedEvent>(OnRootGeometryChanged);
+
+			//this.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+			//this.RegisterCallback<MouseLeaveEvent>(OnMouseLeave);
+		}
+
+		private void OnMouseEnter(MouseEnterEvent evt)
+		{
+			Debug.Log("enter");
+			selectionBorder.AddToClassList(HOVER_CLASS_NAME);
+		}
+
+		private void OnMouseLeave(MouseLeaveEvent evt)
+		{
+			Debug.Log("exit");
+			selectionBorder.RemoveFromClassList(HOVER_CLASS_NAME);
 		}
 
 		private void OnRootGeometryChanged(GeometryChangedEvent evt)
 		{
+			selectionBorder.pickingMode = PickingMode.Ignore;
 			selectionBorder.style.position = Position.Absolute;
 			selectionBorder.style.width = container.layout.width;
 			selectionBorder.style.height = container.layout.height;
@@ -55,13 +80,15 @@ namespace Loki.Editor
 		public override void OnSelected()
 		{
 			base.OnSelected();
-			selectionBorder.RemoveFromClassList(UNSELECTED_CLASS_NAME);
+			selectionBorder.AddToClassList(SELECTED_CLASS_NAME);
+			//selectionBorder.RemoveFromClassList(UNSELECTED_CLASS_NAME);
 		}
 
 		public override void OnUnselected()
 		{
 			base.OnUnselected();
-			selectionBorder.AddToClassList(UNSELECTED_CLASS_NAME);
+			selectionBorder.RemoveFromClassList(SELECTED_CLASS_NAME);
+//			selectionBorder.AddToClassList(UNSELECTED_CLASS_NAME);
 		}
 
 		public override void Select(VisualElement selectionContainer, bool additive)
