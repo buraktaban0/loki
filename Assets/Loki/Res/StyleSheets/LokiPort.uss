@@ -12,16 +12,23 @@ LokiPort {
 LokiPort:hover {
 }
 
-LokiPort > #port-root {
-    justify-content: flex-start;
+.connection-point {
+    min-width: 15px;
+    min-height: 15px;
+    width: 17px;
+    height: 17px;
+    padding: 4px;
+    border-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
     align-items: center;
-    flex-grow: 1;
-    flex-shrink: 0;
+    justify-content: center;
 }
 
 .outline-border {
-    width: 12px;
-    height: 12px;
+    min-width: 13px;
+    min-height: 13px;
+    width: 13px;
+    height: 13px;
     padding: 1px;
     border-radius: 6px;
     border-width: 1px;
@@ -30,7 +37,7 @@ LokiPort > #port-root {
     justify-content: center;
 }
 
-.outline-border:hover {
+.outline-border.hover {
     border-color: white;
     border-width: 2px;
 }
@@ -38,14 +45,14 @@ LokiPort > #port-root {
 .cap {
     align-self: center;
     justify-content: center;
-    width: 5px;
-    height: 5px;
-    border-radius: 2px;
+    width: 7px;
+    height: 7px;
+    border-radius: 3px;
     border-width: 0;
     background-color: crimson;
 }
 
 
-.cap:hover {
+.cap.hover {
     background-color: white;
 }

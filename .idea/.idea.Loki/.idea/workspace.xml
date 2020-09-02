@@ -20,18 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6ff2996-1f46-41af-b7c9-4a3dcb42f3a6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiPort.uss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiPort.uss.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiPort.uxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiPort.uxml.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiEdge.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiEdge.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiNodeView.uss" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiNodeView.uss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiStyle.uss" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiStyle.uss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiPort.uss" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiPort.uss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiNodeView.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiNodeView.uxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiFlowPort.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiFlowPort.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiPort.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiPort.uxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiPort.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiPort.cs" afterDir="false" />
     </list>
@@ -44,7 +42,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/../zerosum/crane-master/Assets/Scripts/CarIndicator.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9C9FA79E-FE9E-479A-8CBE-7A6F99F673D3/b0/d8d352c1/MeshGenerationContext.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -62,18 +60,20 @@
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiResources.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiFlowPort.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiStyle.uss" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" />
+        <option value="$PROJECT_DIR$/../zerosum/crane-master/Assets/Scripts/CarIndicator.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiNodeView.uxml" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiNodeView.uxml" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiNodeView.uss" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiNodeView.uss" />
         <option value="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiPort.uxml" />
         <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiPort.uss" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiNodeView.uxml" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiNodeView.uxml" />
-        <option value="$PROJECT_DIR$/../zerosum/crane-master/Assets/Scripts/CarIndicator.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiPort.cs" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiNodeView.uss" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiNodeView.uss" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Edge.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiEdge.cs" />
       </list>
     </option>
   </component>
@@ -125,6 +125,7 @@
       <workItem from="1598988945550" duration="10881000" />
       <workItem from="1599029434523" duration="9705000" />
       <workItem from="1599055610819" duration="2384000" />
+      <workItem from="1599072365769" duration="9783000" />
     </task>
     <servers />
   </component>
@@ -159,9 +160,14 @@
     </state>
     <state x="-1406" y="5" key="SettingsEditor/-1920.-225.1920.1080/0.0.1792.1120@-1920.-225.1920.1080" timestamp="1599032787292" />
     <state x="-1451" y="-46" key="SettingsEditor/-1920.-225.1920.1080/0.23.1792.1026@-1920.-225.1920.1080" timestamp="1599031794078" />
-    <state x="-1297" y="14" width="672" height="678" key="search.everywhere.popup" timestamp="1599036291185">
-      <screen x="-1920" y="-225" width="1920" height="1080" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1599079471519">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1599079471519" />
+    <state x="623" y="230" width="672" height="653" key="search.everywhere.popup" timestamp="1599079337825">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1297" y="14" width="672" height="678" key="search.everywhere.popup/-1920.-225.1920.1080/0.0.1792.1120@-1920.-225.1920.1080" timestamp="1599036291185" />
+    <state x="623" y="230" width="672" height="653" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1599079337825" />
   </component>
 </project>

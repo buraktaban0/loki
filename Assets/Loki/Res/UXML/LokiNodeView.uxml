@@ -11,6 +11,6 @@
 
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="selection-border" class="selection-border node-corner">
+    <ui:VisualElement name="selection-border" class="selection-border node-corner" picking-mode="Ignore">
     </ui:VisualElement>
 </ui:UXML>

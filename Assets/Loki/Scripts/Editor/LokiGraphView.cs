@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Loki.Editor;
+using Loki.Scripts.Editor;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -23,10 +24,19 @@ public class LokiGraphView : GraphView
 		styleSheets.Add(styleSheet);
 
 		var node = new Node();
+
+		var port = node.InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Multi, typeof(float));
+		node.inputContainer.Add(port);
+
 		this.AddElement(node);
-		
+
 		var nodeView = new LokiNodeView();
-		
+		nodeView.SetPosition(Vector2.one * 400f);
+
 		this.AddElement(nodeView);
+
+
+		var edge = new LokiEdge();
+		this.AddElement(edge);
 	}
 }

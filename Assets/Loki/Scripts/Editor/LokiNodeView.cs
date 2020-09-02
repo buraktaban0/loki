@@ -20,10 +20,11 @@ namespace Loki.Editor
 		private const string SELECTED_CLASS_NAME = "selected";
 		private const string HOVER_CLASS_NAME = "hover";
 
-		private VisualElement container;
-		private VisualElement selectionBorder;
+		private readonly VisualElement container;
+		private readonly VisualElement selectionBorder;
 
-		private VisualElement midContainer;
+		private readonly VisualElement headerContainer;
+		private readonly VisualElement midContainer;
 
 
 		public LokiNodeView()
@@ -45,27 +46,26 @@ namespace Loki.Editor
 			selectionBorder = this.Q<VisualElement>("selection-border");
 			container = this.Q<VisualElement>("node-root");
 
+			headerContainer = this.Q<VisualElement>("header-container");
 			midContainer = this.Q<VisualElement>("mid-container");
 
 
 			var port = new LokiPort(Orientation.Horizontal, Direction.Input, Capacity.Single);
-			midContainer.Add(port);
+			headerContainer.Insert(0, port);
 
 			container.RegisterCallback<GeometryChangedEvent>(OnRootGeometryChanged);
 
-			//this.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
-			//this.RegisterCallback<MouseLeaveEvent>(OnMouseLeave);
+			this.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+			this.RegisterCallback<MouseLeaveEvent>(OnMouseLeave);
 		}
 
 		private void OnMouseEnter(MouseEnterEvent evt)
 		{
-			Debug.Log("enter");
 			selectionBorder.AddToClassList(HOVER_CLASS_NAME);
 		}
 
 		private void OnMouseLeave(MouseLeaveEvent evt)
 		{
-			Debug.Log("exit");
 			selectionBorder.RemoveFromClassList(HOVER_CLASS_NAME);
 		}
 
@@ -89,6 +89,13 @@ namespace Loki.Editor
 			base.OnUnselected();
 			selectionBorder.RemoveFromClassList(SELECTED_CLASS_NAME);
 //			selectionBorder.AddToClassList(UNSELECTED_CLASS_NAME);
+		}
+
+		public void SetPosition(Vector2 position)
+		{
+			this.style.position = Position.Absolute;
+			this.style.top = position.y;
+			this.style.left = position.x;
 		}
 
 		public override void Select(VisualElement selectionContainer, bool additive)

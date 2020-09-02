@@ -14,6 +14,16 @@ namespace Loki.Editor
 
 	public class LokiPort : VisualElement
 	{
+		private const string HOVER_CLASS_NAME = "hover";
+
+		private readonly VisualElement capBorder;
+		private readonly VisualElement cap;
+
+		private readonly VisualElement connectionPoint;
+
+		public override bool canGrabFocus => true;
+
+
 		public LokiPort(Orientation portOrientation, Direction portDirection, Capacity portCapacity)
 		{
 			var vst = LokiResources.Get<VisualTreeAsset>("UXML/LokiPort.uxml");
@@ -25,13 +35,44 @@ namespace Loki.Editor
 
 			this.name = "Dummy Port";
 
-			var portRoot = this.Q<VisualElement>("port-root");
-			portRoot.StretchToParentSize();
-
 			this.pickingMode = PickingMode.Position;
 
+			focusable = true;
 
-			//RegisterCallback<MouseEnterEvent>(ev => { Debug.Log("Mouse enter"); });
+			connectionPoint = this.Q<VisualElement>("connection-point");
+
+			capBorder = this.Q<VisualElement>("outline-border");
+			cap = this.Q<VisualElement>("cap");
+
+			connectionPoint.RegisterCallback<MouseEnterEvent>(OnMouseEnterConnection);
+			connectionPoint.RegisterCallback<MouseLeaveEvent>(OnMouseLeaveConnection);
+
+			connectionPoint.RegisterCallback<MouseDownEvent>(OnMouseDownConnection);
+		}
+
+
+		protected virtual void OnMouseEnterConnection(MouseEnterEvent evt)
+		{
+			cap.AddToClassList(HOVER_CLASS_NAME);
+			capBorder.AddToClassList(HOVER_CLASS_NAME);
+		}
+
+		protected virtual void OnMouseLeaveConnection(MouseLeaveEvent evt)
+		{
+			cap.RemoveFromClassList(HOVER_CLASS_NAME);
+			capBorder.RemoveFromClassList(HOVER_CLASS_NAME);
+		}
+
+		protected virtual void OnMouseDownConnection(MouseDownEvent evt)
+		{
+			evt.StopImmediatePropagation();
+		}
+
+
+		public void SetColor(Color color)
+		{
+			capBorder.style.color = color;
+			cap.style.backgroundColor = color;
 		}
 	}
 }
