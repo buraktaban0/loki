@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using Loki.Editor;
+using Loki.Editor.Utility;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -28,10 +29,16 @@ namespace Loki.Scripts.Editor
 		private const float BEZIER_CONTROL_POINT_DISTANCE = 120f;
 		private const float HALF_WIDTH = 1.5f;
 
+		private const float CONTAINS_CHECK_DISTANCE_THRESHOLD_SQR = (HALF_WIDTH * 5f) * (HALF_WIDTH * 5f);
+
+		private const string HOVER_CLASS_NAME = "hover";
+
 		private static readonly Color EMPTY_COLOR = Color.gray;
 
 		private readonly RenderPoint[] renderPoints = new RenderPoint[RENDER_POINT_COUNT];
 
+
+		private float actualHalfWidth = HALF_WIDTH;
 
 		public LokiPort port0 { get; private set; }
 		public LokiPort port1 { get; private set; }
@@ -104,21 +111,53 @@ namespace Loki.Scripts.Editor
 
 		public LokiEdge()
 		{
+			styleSheets.Add(LokiResources.Get<StyleSheet>("StyleSheets/LokiEdge.uss"));
+
 			generateVisualContent += GenerateVisualContent;
 
+			RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+			RegisterCallback<MouseLeaveEvent>(OnMouseLeave);
 
 			SendToBack();
 		}
 
+		private void OnMouseLeave(MouseLeaveEvent evt)
+		{
+			//RemoveFromClassList(HOVER_CLASS_NAME);
+			actualHalfWidth = HALF_WIDTH;
+			MarkDirtyRepaint();
+		}
+
+		private void OnMouseEnter(MouseEnterEvent evt)
+		{
+			//AddToClassList(HOVER_CLASS_NAME);
+			actualHalfWidth = HALF_WIDTH * 2f;
+			MarkDirtyRepaint();
+		}
+
+
 		private void OnPortGeometryChanged(GeometryChangedEvent evt)
 		{
-			Debug.Log("Port geometry changed!");
-
 			SendToBack();
 
 			PrepareVertices(point0, direction0, Color.cyan, point1, direction1, Color.red);
 
 			MarkDirtyRepaint();
+		}
+
+		public override bool ContainsPoint(Vector2 localPoint)
+		{
+			for (int i = 0; i < renderPoints.Length - 1; i++)
+			{
+				var p0 = renderPoints[i].position;
+				var p1 = renderPoints[i + 1].position;
+				if (GeoUtil.PointSqrDistanceToLineSegment(localPoint, p0, p1) <= CONTAINS_CHECK_DISTANCE_THRESHOLD_SQR)
+				{
+					return true;
+				}
+			}
+
+			return false;
 		}
 
 		public void Connect(LokiPort port0, LokiPort port1)
@@ -152,33 +191,27 @@ namespace Loki.Scripts.Editor
 				yMax = Mathf.Max(yMax, p.position.y);
 			}
 
-			var padding = HALF_WIDTH * 4f;
+			var padding = actualHalfWidth * 8f;
 
 			var min = new Vector3(xMin - padding, yMin - padding);
 			var max = new Vector3(xMax + padding, yMax + padding);
-			min = this.parent.WorldToLocal(min);
-			max = this.parent.WorldToLocal(max);
+			//min = this.parent.WorldToLocal(min);
+			//max = this.parent.WorldToLocal(max);
 
 
 			var size = max - min;
 
-			this.style.position = Position.;
-			this.style.top = min.y;
-			this.style.left = min.x;
-			this.style.width = size.x;
-			this.style.height = size.y;
+			style.position = Position.Absolute;
+			style.top = new StyleLength(style.top.value.value + min.y);
+			style.left = new StyleLength(style.left.value.value + min.x);
+			style.width = size.x;
+			style.height = size.y;
 
 
 			for (int i = 0; i < renderPoints.Length; i++)
 			{
-				//renderPoints[i].position = this.WorldToLocal(renderPoints[i].position);
+				renderPoints[i].position -= min;
 			}
-		}
-
-
-		private void GenerateVisualContent(MeshGenerationContext cxt)
-		{
-			DrawEdge(cxt);
 		}
 
 
@@ -209,6 +242,12 @@ namespace Loki.Scripts.Editor
 			UpdateLayout();
 		}
 
+		private void GenerateVisualContent(MeshGenerationContext cxt)
+		{
+			DrawEdge(cxt);
+		}
+
+
 		private void DrawEdge(MeshGenerationContext cxt)
 		{
 			uint vertexCount = RENDER_POINT_COUNT * 2;
@@ -223,11 +262,12 @@ namespace Loki.Scripts.Editor
 				{
 					if (i > 0)
 					{
-						normal = (renderPoints[i + 1].position - renderPoints[i - 1].position).normalized * HALF_WIDTH;
+						normal = (renderPoints[i + 1].position - renderPoints[i - 1].position).normalized *
+						         actualHalfWidth;
 					}
 					else
 					{
-						normal = (renderPoints[i + 1].position - renderPoints[i].position).normalized * HALF_WIDTH;
+						normal = (renderPoints[i + 1].position - renderPoints[i].position).normalized * actualHalfWidth;
 					}
 
 					var tmp = normal.x;

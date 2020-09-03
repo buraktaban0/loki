@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Loki.Editor;
 using Loki.Scripts.Editor;
@@ -39,9 +40,17 @@ public class LokiGraphView : GraphView
 		this.AddElement(nodeView);
 		this.AddElement(nodeView2);
 
+		EventCallback<GeometryChangedEvent> func = null;
+		func = evt =>
+		{
+			var edge = new LokiEdge();
+			edge.Connect(nodeView.Q<LokiPort>(), nodeView2.Q<LokiPort>());
+			this.AddElement(edge);
+			nodeView.UnregisterCallback<GeometryChangedEvent>(func);
+		};
 
-		var edge = new LokiEdge();
-		edge.Connect(nodeView.Q<LokiPort>(), nodeView2.Q<LokiPort>());
-		this.AddElement(edge);
+		nodeView.RegisterCallback<GeometryChangedEvent>(func);
+
+		
 	}
 }

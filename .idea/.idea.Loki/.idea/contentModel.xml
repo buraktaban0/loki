@@ -8,6 +8,7 @@
         <e p="loki" t="Include">
           <e p="Res" t="Include">
             <e p="Stylesheets" t="Include">
+              <e p="LokiEdge.uss" t="Include" />
               <e p="LokiNodeView.uss" t="Include" />
               <e p="LokiPort.uss" t="Include" />
               <e p="LokiStyle.uss" t="Include" />
@@ -27,6 +28,7 @@
               <e p="LokiPort.cs" t="Include" />
               <e p="LokiResources.cs" t="Include" />
               <e p="Utility" t="Include">
+                <e p="GeoUtil.cs" t="Include" />
                 <e p="LokiAssetHandler.cs" t="Include" />
               </e>
             </e>

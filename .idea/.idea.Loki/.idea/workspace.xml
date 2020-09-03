@@ -20,11 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6ff2996-1f46-41af-b7c9-4a3dcb42f3a6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiEdge.uss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/GeoUtil.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiEdge.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiEdge.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiPort.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiPort.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,11 +62,13 @@
         <option value="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiPort.uxml" />
         <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiPort.uss" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Edge.cs" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiPort.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/GeoUtil.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiEdge.uss" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiEdge.cs" />
       </list>
     </option>
@@ -119,7 +122,7 @@
       <workItem from="1599029434523" duration="9705000" />
       <workItem from="1599055610819" duration="2384000" />
       <workItem from="1599072365769" duration="9961000" />
-      <workItem from="1599154458744" duration="11617000" />
+      <workItem from="1599154458744" duration="17178000" />
     </task>
     <servers />
   </component>
