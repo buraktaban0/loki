@@ -23,6 +23,25 @@ namespace Loki.Editor
 
 		public override bool canGrabFocus => true;
 
+		public Color color
+		{
+			get => cap.resolvedStyle.backgroundColor;
+			set
+			{
+				cap.style.backgroundColor = value;
+				capBorder.style.borderTopColor = value;
+				capBorder.style.borderRightColor = value;
+				capBorder.style.borderBottomColor = value;
+				capBorder.style.borderLeftColor = value;
+			}
+		}
+
+		public Vector3 directionVec { get; private set; }
+
+		public Vector3 connectionWorldPos
+		{
+			get { return cap.parent.LocalToWorld(cap.layout.center); }
+		}
 
 		public LokiPort(Orientation portOrientation, Direction portDirection, Capacity portCapacity)
 		{
@@ -36,6 +55,8 @@ namespace Loki.Editor
 			this.name = "Dummy Port";
 
 			this.pickingMode = PickingMode.Position;
+
+			directionVec = portDirection == Direction.Input ? Vector3.left : Vector3.right;
 
 			focusable = true;
 

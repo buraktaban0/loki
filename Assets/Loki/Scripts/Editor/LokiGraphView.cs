@@ -30,13 +30,18 @@ public class LokiGraphView : GraphView
 
 		this.AddElement(node);
 
-		var nodeView = new LokiNodeView();
-		nodeView.SetPosition(Vector2.one * 400f);
+		var nodeView2 = new LokiNodeView(0);
+		nodeView2.SetPosition(Vector2.one * 400f);
+
+		var nodeView = new LokiNodeView(1);
+		nodeView.SetPosition(Vector3.right * 200f + Vector3.down * 100f);
 
 		this.AddElement(nodeView);
+		this.AddElement(nodeView2);
 
 
 		var edge = new LokiEdge();
+		edge.Connect(nodeView.Q<LokiPort>(), nodeView2.Q<LokiPort>());
 		this.AddElement(edge);
 	}
 }

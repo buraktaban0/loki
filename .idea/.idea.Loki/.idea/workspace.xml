@@ -20,15 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6ff2996-1f46-41af-b7c9-4a3dcb42f3a6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiEdge.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiEdge.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiNodeView.uss" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiNodeView.uss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiPort.uss" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiPort.uss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiNodeView.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiNodeView.uxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiPort.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiPort.uxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiEdge.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiEdge.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiPort.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiPort.cs" afterDir="false" />
@@ -64,15 +57,15 @@
         <option value="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiNodeView.uxml" />
         <option value="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiNodeView.uxml" />
         <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiNodeView.uss" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiNodeView.uss" />
         <option value="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiPort.uxml" />
         <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiPort.uss" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiPort.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Edge.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiPort.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiEdge.cs" />
       </list>
     </option>
@@ -125,7 +118,8 @@
       <workItem from="1598988945550" duration="10881000" />
       <workItem from="1599029434523" duration="9705000" />
       <workItem from="1599055610819" duration="2384000" />
-      <workItem from="1599072365769" duration="9783000" />
+      <workItem from="1599072365769" duration="9961000" />
+      <workItem from="1599154458744" duration="11617000" />
     </task>
     <servers />
   </component>
@@ -151,10 +145,11 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1191" y="23" key="RiderGenerateDialog" timestamp="1599037672955">
-      <screen x="-1920" y="-225" width="1920" height="1080" />
+    <state x="729" y="239" key="RiderGenerateDialog" timestamp="1599155558865">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1191" y="23" key="RiderGenerateDialog/-1920.-225.1920.1080/0.0.1792.1120@-1920.-225.1920.1080" timestamp="1599037672955" />
+    <state x="729" y="239" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1599155558865" />
     <state x="-1406" y="5" key="SettingsEditor" timestamp="1599032787292">
       <screen x="-1920" y="-225" width="1920" height="1080" />
     </state>

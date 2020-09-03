@@ -11,7 +11,7 @@ namespace Loki.Editor
 	{
 		public static LokiNodeView Get(LokiNode node)
 		{
-			var nodeView = new LokiNodeView();
+			var nodeView = new LokiNodeView(0);
 
 			return nodeView;
 		}
@@ -27,7 +27,7 @@ namespace Loki.Editor
 		private readonly VisualElement midContainer;
 
 
-		public LokiNodeView()
+		public LokiNodeView(int i)
 		{
 			var visualTree = LokiResources.Get<VisualTreeAsset>("UXML/LokiNodeView.uxml");
 			visualTree.CloneTree(this);
@@ -50,8 +50,9 @@ namespace Loki.Editor
 			midContainer = this.Q<VisualElement>("mid-container");
 
 
-			var port = new LokiPort(Orientation.Horizontal, Direction.Input, Capacity.Single);
-			headerContainer.Insert(0, port);
+			var port = new LokiPort(Orientation.Horizontal, i == 0 ? Direction.Input : Direction.Output,
+			                        Capacity.Single);
+			headerContainer.Insert(i, port);
 
 			container.RegisterCallback<GeometryChangedEvent>(OnRootGeometryChanged);
 
