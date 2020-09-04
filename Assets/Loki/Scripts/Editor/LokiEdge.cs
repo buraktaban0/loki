@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Loki.Editor;
 using Loki.Editor.Utility;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -34,6 +36,7 @@ namespace Loki.Scripts.Editor
 		private const string HOVER_CLASS_NAME = "hover";
 
 		private static readonly Color EMPTY_COLOR = Color.gray;
+		private static readonly Color DYNAMIC_COLOR = Color.white;
 
 		private readonly RenderPoint[] renderPoints = new RenderPoint[RENDER_POINT_COUNT];
 
@@ -43,71 +46,48 @@ namespace Loki.Scripts.Editor
 		public LokiPort port0 { get; private set; }
 		public LokiPort port1 { get; private set; }
 
-		private Vector3 point0
+		private ConnectorData GetPortConnectorData(LokiPort port)
 		{
-			get
-			{
-				if (port0 == null)
-					return Vector3.one * 150f;
+			if (state == State.None)
+				throw new Exception("LokiEdge with state 'None' cannot be interacted with.");
 
-				return this.WorldToLocal(port0.connectionWorldPos);
+			if (port == null)
+			{
+				return mouseConnectorData;
+				throw new Exception("Trying to access 'port0', which is null.");
 			}
+
+			return new ConnectorData
+			       {
+				       position = this.WorldToLocal(port.connectionWorldPos),
+				       direction = port.directionVec,
+				       color = port.color
+			       };
 		}
 
-		private Vector3 point1
-		{
-			get
-			{
-				if (port1 == null)
-					return Vector3.one * 250f;
+		private Vector2 lastMousePosition;
 
-				return this.WorldToLocal(port1.connectionWorldPos);
-			}
+		private ConnectorData mouseConnectorData => new ConnectorData
+		                                            {
+			                                            position = this.WorldToLocal(lastMousePosition),
+			                                            direction = -port0.directionVec,
+			                                            color = DYNAMIC_COLOR
+		                                            };
+
+		public ConnectorData connector0 => GetPortConnectorData(port0);
+		public ConnectorData connector1 => GetPortConnectorData(port1);
+
+		private int validPortCount => port0 == null ? (port1 == null ? 0 : 1) : (port1 == null ? 1 : 2);
+
+		public enum State
+		{
+			None = 0,
+			Dynamic = 1,
+			Static = 2
 		}
 
-		private Vector3 direction0
-		{
-			get
-			{
-				if (port0 == null)
-					return Vector3.up;
+		public State state => (State) validPortCount;
 
-				return port0.directionVec;
-			}
-		}
-
-		private Vector3 direction1
-		{
-			get
-			{
-				if (port1 == null)
-					return Vector3.down;
-
-				return port1.directionVec;
-			}
-		}
-
-		private Color color0
-		{
-			get
-			{
-				if (port0 == null)
-					return EMPTY_COLOR;
-
-				return port0.color;
-			}
-		}
-
-		private Color color1
-		{
-			get
-			{
-				if (port1 == null)
-					return EMPTY_COLOR;
-
-				return port1.color;
-			}
-		}
 
 		public LokiEdge()
 		{
@@ -121,18 +101,19 @@ namespace Loki.Scripts.Editor
 			SendToBack();
 		}
 
+
 		private void OnMouseLeave(MouseLeaveEvent evt)
 		{
 			//RemoveFromClassList(HOVER_CLASS_NAME);
 			actualHalfWidth = HALF_WIDTH;
-			MarkDirtyRepaint();
+			//MarkDirtyRepaint();
 		}
 
 		private void OnMouseEnter(MouseEnterEvent evt)
 		{
 			//AddToClassList(HOVER_CLASS_NAME);
 			actualHalfWidth = HALF_WIDTH * 2f;
-			MarkDirtyRepaint();
+			//MarkDirtyRepaint();
 		}
 
 
@@ -140,9 +121,24 @@ namespace Loki.Scripts.Editor
 		{
 			SendToBack();
 
-			PrepareVertices(point0, direction0, Color.cyan, point1, direction1, Color.red);
+			PrepareVertices(connector0, connector1);
 
 			MarkDirtyRepaint();
+		}
+
+
+		public override void HandleEvent(EventBase evt)
+		{
+			if (evt.eventTypeId == MouseMoveEvent.TypeId())
+			{
+				lastMousePosition = Event.current.mousePosition;
+				//PrepareVertices(connector0, connector1);
+
+				//MarkDirtyRepaint();
+				return;
+			}
+
+			base.HandleEvent(evt);
 		}
 
 		public override bool ContainsPoint(Vector2 localPoint)
@@ -160,6 +156,13 @@ namespace Loki.Scripts.Editor
 			return false;
 		}
 
+
+		public void StartFrom(LokiPort port)
+		{
+			this.port0 = port;
+			MarkDirtyRepaint();
+		}
+
 		public void Connect(LokiPort port0, LokiPort port1)
 		{
 			this.port0?.GetFirstAncestorOfType<LokiNodeView>()
@@ -175,49 +178,27 @@ namespace Loki.Scripts.Editor
 			this.port1?.GetFirstAncestorOfType<LokiNodeView>()
 			    .RegisterCallback<GeometryChangedEvent>(OnPortGeometryChanged);
 
+			if (state == State.Dynamic)
+			{
+				this.CaptureMouse();
+			}
+
+			PrepareVertices(connector0, connector1);
+
 			MarkDirtyRepaint();
 		}
 
 
-		private void UpdateLayout()
+		private void PrepareVertices(ConnectorData connector0, ConnectorData connector1)
 		{
-			float xMin = float.MaxValue, yMin = float.MaxValue, xMax = float.MinValue, yMax = float.MinValue;
-			for (int i = 0; i < renderPoints.Length; i++)
-			{
-				var p = renderPoints[i];
-				xMin = Mathf.Min(xMin, p.position.x);
-				xMax = Mathf.Max(xMax, p.position.x);
-				yMin = Mathf.Min(yMin, p.position.y);
-				yMax = Mathf.Max(yMax, p.position.y);
-			}
+			var point0 = connector0.position;
+			var dir0 = connector0.direction;
+			var color0 = connector0.color;
 
-			var padding = actualHalfWidth * 8f;
+			var point1 = connector1.position;
+			var dir1 = connector1.direction;
+			var color1 = connector1.color;
 
-			var min = new Vector3(xMin - padding, yMin - padding);
-			var max = new Vector3(xMax + padding, yMax + padding);
-			//min = this.parent.WorldToLocal(min);
-			//max = this.parent.WorldToLocal(max);
-
-
-			var size = max - min;
-
-			style.position = Position.Absolute;
-			style.top = new StyleLength(style.top.value.value + min.y);
-			style.left = new StyleLength(style.left.value.value + min.x);
-			style.width = size.x;
-			style.height = size.y;
-
-
-			for (int i = 0; i < renderPoints.Length; i++)
-			{
-				renderPoints[i].position -= min;
-			}
-		}
-
-
-		private void PrepareVertices(Vector3 point0, Vector3 dir0, Color color0, Vector3 point1, Vector3 dir1,
-		                             Color color1)
-		{
 			point0.z = point1.z = 0f;
 			dir0.Normalize();
 			dir1.Normalize();
@@ -241,6 +222,42 @@ namespace Loki.Scripts.Editor
 
 			UpdateLayout();
 		}
+
+		private void UpdateLayout()
+		{
+			float xMin = float.MaxValue, yMin = float.MaxValue, xMax = float.MinValue, yMax = float.MinValue;
+			for (int i = 0; i < renderPoints.Length; i++)
+			{
+				var p = renderPoints[i];
+				xMin = Mathf.Min(xMin, p.position.x);
+				xMax = Mathf.Max(xMax, p.position.x);
+				yMin = Mathf.Min(yMin, p.position.y);
+				yMax = Mathf.Max(yMax, p.position.y);
+			}
+
+			var padding = actualHalfWidth * 0f;
+
+			var min = new Vector3(xMin - padding, yMin - padding);
+			var max = new Vector3(xMax + padding, yMax + padding);
+			//min = this.parent.WorldToLocal(min);
+			//max = this.parent.WorldToLocal(max);
+
+
+			var size = max - min;
+
+			style.position = Position.Absolute;
+			style.top = new StyleLength(resolvedStyle.top + min.y);
+			style.left = new StyleLength(resolvedStyle.left + min.x);
+			style.width = size.x;
+			style.height = size.y;
+
+
+			for (int i = 0; i < renderPoints.Length; i++)
+			{
+				renderPoints[i].position = renderPoints[i].position - min;
+			}
+		}
+
 
 		private void GenerateVisualContent(MeshGenerationContext cxt)
 		{
@@ -300,10 +317,10 @@ namespace Loki.Scripts.Editor
 		{
 			position.z = Vertex.nearZ;
 			return new Vertex
-			{
-				position = position,
-				tint = color
-			};
+			       {
+				       position = position,
+				       tint = color
+			       };
 		}
 
 		private RenderPoint GetBezierRenderPoint(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3, Color color0,
@@ -324,10 +341,10 @@ namespace Loki.Scripts.Editor
 			var c = Color.Lerp(color0, color1, t);
 
 			return new RenderPoint
-			{
-				position = p,
-				color = c
-			};
+			       {
+				       position = p,
+				       color = c
+			       };
 		}
 	}
 }

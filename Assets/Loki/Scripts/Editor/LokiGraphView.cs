@@ -40,17 +40,8 @@ public class LokiGraphView : GraphView
 		this.AddElement(nodeView);
 		this.AddElement(nodeView2);
 
-		EventCallback<GeometryChangedEvent> func = null;
-		func = evt =>
-		{
-			var edge = new LokiEdge();
-			edge.Connect(nodeView.Q<LokiPort>(), nodeView2.Q<LokiPort>());
-			this.AddElement(edge);
-			nodeView.UnregisterCallback<GeometryChangedEvent>(func);
-		};
-
-		nodeView.RegisterCallback<GeometryChangedEvent>(func);
-
-		
+		var edge = new LokiEdge();
+		this.AddElement(edge);
+		edge.Connect(nodeView.Q<LokiPort>(), nodeView2.Q<LokiPort>());
 	}
 }

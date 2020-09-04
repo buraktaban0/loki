@@ -1,4 +1,5 @@
 ﻿using System;
+using Loki.Scripts.Editor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -20,6 +21,8 @@ namespace Loki.Editor
 		private readonly VisualElement cap;
 
 		private readonly VisualElement connectionPoint;
+
+		private LokiGraphView graphView => GetFirstAncestorOfType<LokiGraphView>();
 
 		public override bool canGrabFocus => true;
 
@@ -65,6 +68,7 @@ namespace Loki.Editor
 			capBorder = this.Q<VisualElement>("outline-border");
 			cap = this.Q<VisualElement>("cap");
 
+
 			connectionPoint.RegisterCallback<MouseEnterEvent>(OnMouseEnterConnection);
 			connectionPoint.RegisterCallback<MouseLeaveEvent>(OnMouseLeaveConnection);
 
@@ -87,13 +91,30 @@ namespace Loki.Editor
 		protected virtual void OnMouseDownConnection(MouseDownEvent evt)
 		{
 			evt.StopImmediatePropagation();
+			Debug.Log("down");
+			StartConnection();
 		}
 
+		public override void HandleEvent(EventBase evt)
+		{
+			if (evt.eventTypeId == MouseUpEvent.TypeId())
+			{
+				Debug.Log("mouse up");
+			}
+		}
 
 		public void SetColor(Color color)
 		{
 			capBorder.style.color = color;
 			cap.style.backgroundColor = color;
+		}
+
+		public LokiEdge StartConnection()
+		{
+			var edge = new LokiEdge();
+			graphView.AddElement(edge);
+			edge.Connect(this, null);
+			return edge;
 		}
 	}
 }
