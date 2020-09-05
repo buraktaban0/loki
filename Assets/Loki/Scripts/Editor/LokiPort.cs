@@ -17,10 +17,14 @@ namespace Loki.Editor
 
 	public class LokiPort : VisualElement
 	{
-		private readonly VisualElement capBorder;
-		private readonly VisualElement cap;
+		private static readonly Color INACTIVE_COLOR = new Color(1f, 1f, 1f, 0.25f);
 
-		private readonly VisualElement connectionPoint;
+		public readonly VisualElement capBorder;
+		public readonly VisualElement cap;
+
+		public readonly VisualElement connectionElement;
+
+		public LokiNodeView node;
 
 		public override bool canGrabFocus => true;
 
@@ -28,7 +32,9 @@ namespace Loki.Editor
 
 		public LokiGraphView graphView => this.GetFirstAncestorOfType<LokiGraphView>();
 
-		public Color color
+		public Color defaultColor;
+
+		public virtual StyleColor color
 		{
 			get => cap.resolvedStyle.backgroundColor;
 			set
@@ -38,6 +44,32 @@ namespace Loki.Editor
 				capBorder.style.borderRightColor = value;
 				capBorder.style.borderBottomColor = value;
 				capBorder.style.borderLeftColor = value;
+
+				RefreshPortState();
+			}
+		}
+
+		private bool _active = true;
+
+		public virtual bool active
+		{
+			get => _active;
+			set
+			{
+				_active = value;
+
+				this.SetEnabled(value);
+
+				if (_active)
+				{
+					this.color = defaultColor;
+				}
+				else
+				{
+					this.color = INACTIVE_COLOR;
+				}
+				
+				RefreshPortState();
 			}
 		}
 
@@ -73,8 +105,7 @@ namespace Loki.Editor
 			directionVec = portDirection == Direction.Input ? Vector3.left : Vector3.right;
 
 			focusable = true;
-
-			connectionPoint = this.Q<VisualElement>("connection-point");
+			connectionElement = this.Q<VisualElement>("connection-point");
 
 			capBorder = this.Q<VisualElement>("outline-border");
 			cap = this.Q<VisualElement>("cap");
@@ -84,20 +115,31 @@ namespace Loki.Editor
 			cap.pickingMode = PickingMode.Ignore;
 			capBorder.pickingMode = PickingMode.Ignore;
 
-			connectionPoint.RegisterCallback<MouseEnterEvent>(OnMouseEnterConnection);
-			connectionPoint.RegisterCallback<MouseLeaveEvent>(OnMouseLeaveConnection);
+			this.color = Color.red;
 
-			connectionPoint.RegisterCallback<MouseDownEvent>(OnMouseDownConnection);
+			this.RegisterCallback<AttachToPanelEvent>(OnAttachToPanel);
 
-			connectionPoint.focusable = true;
-			connectionPoint.pickingMode = PickingMode.Position;
-			connectionPoint.AddManipulator(new ContextualMenuManipulator(OnContextMenuPopulate));
+			connectionElement.RegisterCallback<MouseEnterEvent>(OnMouseEnterConnection);
+			connectionElement.RegisterCallback<MouseLeaveEvent>(OnMouseLeaveConnection);
+
+			connectionElement.RegisterCallback<MouseDownEvent>(OnMouseDownConnection);
+
+			connectionElement.focusable = true;
+			connectionElement.pickingMode = PickingMode.Position;
+			connectionElement.AddManipulator(new ContextualMenuManipulator(OnContextMenuPopulate));
+		}
+
+		private void OnAttachToPanel(AttachToPanelEvent evt)
+		{
+			node = this.GetFirstAncestorOfType<LokiNodeView>();
 		}
 
 		protected virtual void OnMouseEnterConnection(MouseEnterEvent evt)
 		{
 			cap.AddToClassList(LokiEditorUtility.CLASS_HOVER);
 			capBorder.AddToClassList(LokiEditorUtility.CLASS_HOVER);
+
+			this.color = new StyleColor(StyleKeyword.Initial);
 
 			RefreshPortState();
 		}
@@ -106,6 +148,9 @@ namespace Loki.Editor
 		{
 			cap.RemoveFromClassList(LokiEditorUtility.CLASS_HOVER);
 			capBorder.RemoveFromClassList(LokiEditorUtility.CLASS_HOVER);
+
+			this.color = defaultColor;
+
 
 			RefreshPortState();
 		}
@@ -127,10 +172,6 @@ namespace Loki.Editor
 
 		public void SetColor(Color color)
 		{
-			capBorder.style.color = color;
-			cap.style.backgroundColor = color;
-
-
 			RefreshPortState();
 		}
 

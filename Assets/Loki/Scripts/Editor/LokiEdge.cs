@@ -28,7 +28,7 @@ namespace Loki.Editor
 
 		public const float FLAT_REGION_LENGTH = 25f;
 		public const float BEZIER_CONTROL_POINT_DISTANCE = 125f;
-		public const float HALF_WIDTH = 1.0f;
+		public const float HALF_WIDTH = 0.9f;
 
 		public const float CONTAINS_CHECK_DISTANCE_THRESHOLD_SQR = (HALF_WIDTH * 6f) * (HALF_WIDTH * 6f);
 
@@ -118,7 +118,7 @@ namespace Loki.Editor
 			if (state != State.Closed)
 				return;
 			AddToClassList(LokiEditorUtility.CLASS_HOVER);
-			actualHalfWidth = HALF_WIDTH * 2f;
+			actualHalfWidth = HALF_WIDTH * 1.5f;
 			TriggerRepaint();
 		}
 
@@ -185,6 +185,8 @@ namespace Loki.Editor
 
 		public void DestroySelf()
 		{
+			ReleaseEligiblePorts();
+			
 			isDestroyed = true;
 			this.RemoveFromHierarchy();
 			fromPort?.DisconnectEdge(this);
@@ -281,7 +283,9 @@ namespace Loki.Editor
 
 		private void CollectEligiblePorts()
 		{
-			eligiblePorts = graphView.GetEligiblePorts(fromPort);
+			eligiblePorts = graphView.CollectEligiblePorts(fromPort);
+
+			
 			foreach (var port in eligiblePorts)
 			{
 				port.RegisterCallback<MouseEnterEvent>(SetCandidatePort);
@@ -293,6 +297,9 @@ namespace Loki.Editor
 		{
 			if (eligiblePorts == null)
 				return;
+
+			graphView?.ReleaseEligiblePorts();	
+			
 			foreach (var port in eligiblePorts)
 			{
 				port.UnregisterCallback<MouseEnterEvent>(SetCandidatePort);
@@ -314,7 +321,7 @@ namespace Loki.Editor
 		{
 			point = this.WorldToLocal(port.connectionWorldPos);
 			dir = port.directionVec;
-			color = port.color;
+			color = port.color.value;
 		}
 
 		private void PrepareRenderPoints()

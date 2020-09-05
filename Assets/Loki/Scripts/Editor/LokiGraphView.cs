@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Loki.Editor;
 using Loki.Editor.Adapters;
 using UnityEditor;
@@ -76,12 +77,31 @@ public class LokiGraphView : GraphView
 	}
 
 
-	public List<LokiPort> GetEligiblePorts(LokiPort fromPort)
+	public List<LokiPort> CollectEligiblePorts(LokiPort fromPort)
 	{
-		var ports = new List<LokiPort>();
+		Debug.Log(fromPort.node == null); 
+		
+		var otherPorts = ports.Where(p => p != fromPort).ToList();
+		Debug.Log("other" + otherPorts.Count);
 
-		ports.AddRange(this.ports);
+		var eligiblePorts = otherPorts.Where(port => port.node != fromPort.node)
+		                              .ToList();
 
-		return ports;
+		Debug.Log(eligiblePorts.Count);
+
+		foreach (var port in ports.Except(eligiblePorts).ToList())
+		{
+			port.active = false;
+		}
+
+		return eligiblePorts;
+	}
+
+	public void ReleaseEligiblePorts()
+	{
+		foreach (var port in ports)
+		{
+			port.active = true;
+		}
 	}
 }

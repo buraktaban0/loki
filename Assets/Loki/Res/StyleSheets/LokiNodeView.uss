@@ -59,7 +59,7 @@ LokiNodeView {
 
 .header-container > Label {
     font-size: 12px;
-    -unity-font-style: bold;
+    -unity-font-style: normal;
     margin: 4px 14px 4px 14px;
 }
 

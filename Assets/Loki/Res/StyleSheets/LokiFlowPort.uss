@@ -13,10 +13,10 @@ LokiPort:hover {
 }
 
 .connection-point {
-    min-width: 19px;
-    min-height: 19px;
-    width: 19px;
-    height: 19px;
+    min-width: 23px;
+    min-height: 23px;
+    width: 23px;
+    height: 23px;
     padding: 4px;
     border-color: rgba(0, 0, 0, 0);
     background-color: rgba(0, 0, 0, 0);
@@ -25,31 +25,35 @@ LokiPort:hover {
 }
 
 .outline-border {
-    min-width: 15px;
-    min-height: 13px;
-    width: 15px;
-    height: 13px;
-    border-width: 1px;
+    min-width: 17px;
+    min-height: 17px;
+    width: 17px;
+    height: 17px;
+    background-image: url("../right_arrow_border.png");
+    border-width: 0px;
     border-radius: 0px 13px 13px 0px;
     align-items: center;
     justify-content: center;
 }
 
 .outline-border.hover {
-    border-color: lightcyan;
+    border-width: 0;
 }
 
 
 .cap {
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("../right_arrow_cap.png");
     align-self: center;
     justify-content: center;
-    width: 9px;
-    height: 7px;
+    left: -1px;
+    width: 11px;
+    height: 11px;
     border-radius: 0px 3px 3px 0px;
     border-width: 0;
 }
 
 
 .cap.hover {
-    background-color: lightcyan;
+    background-color: rgba(0, 0, 0, 0);
 }
