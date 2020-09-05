@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Loki.Editor;
@@ -7,7 +8,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Loki.Scripts.Editor
+namespace Loki.Editor
 {
 	public struct RenderPoint
 	{
@@ -21,128 +22,183 @@ namespace Loki.Scripts.Editor
 		}
 	}
 
-	public class LokiEdge : GraphElement
+	public class LokiEdge : GraphElement, ICollectibleElement
 	{
-		private const int RENDER_POINT_COUNT = 48;
+		public const int RENDER_POINT_COUNT = 48;
 
-		private const float FLAT_REGION_LENGTH = 20f;
-		private const float BEZIER_CONTROL_POINT_DISTANCE = 120f;
-		private const float HALF_WIDTH = 1.5f;
+		public const float FLAT_REGION_LENGTH = 25f;
+		public const float BEZIER_CONTROL_POINT_DISTANCE = 125f;
+		public const float HALF_WIDTH = 1.0f;
 
-		private const float CONTAINS_CHECK_DISTANCE_THRESHOLD_SQR = (HALF_WIDTH * 5f) * (HALF_WIDTH * 5f);
+		public const float CONTAINS_CHECK_DISTANCE_THRESHOLD_SQR = (HALF_WIDTH * 6f) * (HALF_WIDTH * 6f);
 
-		private const string HOVER_CLASS_NAME = "hover";
-
-		private static readonly Color EMPTY_COLOR = Color.gray;
+		private static readonly Color EMPTY_COLOR = Color.white;
 
 		private readonly RenderPoint[] renderPoints = new RenderPoint[RENDER_POINT_COUNT];
+
+		public LokiPort fromPort { get; private set; }
+		public LokiPort toPort   { get; private set; }
+
+		public int validPortCount => fromPort == null ? 0 : toPort == null ? 1 : 2;
+
+
+		private LokiGraphView graphView => this.GetFirstAncestorOfType<LokiGraphView>();
+
+		private List<LokiPort> eligiblePorts;
+
+		private LokiPort candidatePort;
 
 
 		private float actualHalfWidth = HALF_WIDTH;
 
-		public LokiPort port0 { get; private set; }
-		public LokiPort port1 { get; private set; }
+		private bool isMouseOver = false;
+		private bool isSelected = false;
 
-		private Vector3 point0
+		public enum State
 		{
-			get
-			{
-				if (port0 == null)
-					return Vector3.one * 150f;
-
-				return this.WorldToLocal(port0.connectionWorldPos);
-			}
+			None = 0,
+			Open = 1,
+			Closed = 2
 		}
 
-		private Vector3 point1
-		{
-			get
-			{
-				if (port1 == null)
-					return Vector3.one * 250f;
+		public State state => (State) validPortCount;
 
-				return this.WorldToLocal(port1.connectionWorldPos);
-			}
-		}
 
-		private Vector3 direction0
-		{
-			get
-			{
-				if (port0 == null)
-					return Vector3.up;
-
-				return port0.directionVec;
-			}
-		}
-
-		private Vector3 direction1
-		{
-			get
-			{
-				if (port1 == null)
-					return Vector3.down;
-
-				return port1.directionVec;
-			}
-		}
-
-		private Color color0
-		{
-			get
-			{
-				if (port0 == null)
-					return EMPTY_COLOR;
-
-				return port0.color;
-			}
-		}
-
-		private Color color1
-		{
-			get
-			{
-				if (port1 == null)
-					return EMPTY_COLOR;
-
-				return port1.color;
-			}
-		}
+		private Vector3 mouseWorldPosition;
 
 		public LokiEdge()
 		{
 			styleSheets.Add(LokiResources.Get<StyleSheet>("StyleSheets/LokiEdge.uss"));
 
-			generateVisualContent += GenerateVisualContent;
+			capabilities |= Capabilities.Selectable | Capabilities.Deletable;
+			usageHints = UsageHints.DynamicTransform;
+
+			generateVisualContent += OnGenerateVisualContent;
 
 			RegisterCallback<MouseEnterEvent>(OnMouseEnter);
 			RegisterCallback<MouseLeaveEvent>(OnMouseLeave);
 
-			SendToBack();
+			RegisterCallback<AttachToPanelEvent>(OnAttachToPanel);
+			RegisterCallback<DetachFromPanelEvent>(OnDetachFromPanel);
+
+			this.AddManipulator(new ContextualMenuManipulator(OnContextMenuPopulate));
 		}
+
+		public override bool IsSelectable()
+		{
+			return isMouseOver;
+		}
+
+		private void OnContextMenuPopulate(ContextualMenuPopulateEvent evt)
+		{
+			evt.menu.AppendAction("Delete", action => DestroySelf());
+		}
+
+		private void OnAttachToPanel(AttachToPanelEvent evt)
+		{
+			SendToBack();
+			TriggerRepaint();
+		}
+
+		private void OnDetachFromPanel(DetachFromPanelEvent evt)
+		{
+			DestroySelf();
+		}
+
 
 		private void OnMouseLeave(MouseLeaveEvent evt)
 		{
-			//RemoveFromClassList(HOVER_CLASS_NAME);
+			if (state != State.Closed)
+				return;
+
+			RemoveFromClassList(LokiEditorUtility.CLASS_HOVER);
+
 			actualHalfWidth = HALF_WIDTH;
-			MarkDirtyRepaint();
+			TriggerRepaint();
 		}
 
 		private void OnMouseEnter(MouseEnterEvent evt)
 		{
-			//AddToClassList(HOVER_CLASS_NAME);
+			if (state != State.Closed)
+				return;
+
+			AddToClassList(LokiEditorUtility.CLASS_HOVER);
+
 			actualHalfWidth = HALF_WIDTH * 2f;
-			MarkDirtyRepaint();
+			TriggerRepaint();
+		}
+
+
+		public override void OnSelected()
+		{
+			isSelected = true;
+			TriggerRepaint();
+
+			base.OnSelected();
+		}
+
+		public override void OnUnselected()
+		{
+			isSelected = false;
+			TriggerRepaint();
+
+			base.OnUnselected();
 		}
 
 
 		private void OnPortGeometryChanged(GeometryChangedEvent evt)
 		{
-			SendToBack();
+			TriggerRepaint();
+		}
 
-			PrepareVertices(point0, direction0, Color.cyan, point1, direction1, Color.red);
 
-			MarkDirtyRepaint();
+		private void OnGenerateVisualContent(MeshGenerationContext cxt)
+		{
+			DrawEdge(cxt);
+		}
+
+		public override void HandleEvent(EventBase evt)
+		{
+			if (state == State.Closed)
+			{
+				base.HandleEvent(evt);
+				return;
+			}
+
+			if (evt.eventTypeId == MouseMoveEvent.TypeId())
+			{
+				var mouseEvent = (MouseMoveEvent) evt;
+				mouseWorldPosition = mouseEvent.mousePosition;
+
+				TriggerRepaint();
+			}
+			else if (evt.eventTypeId == MouseUpEvent.TypeId())
+			{
+				this.ReleaseMouse();
+
+				if (candidatePort == null)
+				{
+					DestroySelf();
+				}
+				else
+				{
+					this.Connect(fromPort, candidatePort);
+				}
+			}
+
+
+			base.HandleEvent(evt);
+		}
+
+		private void DestroySelf()
+		{
+			this.RemoveFromHierarchy();
+
+			fromPort?.DisconnectEdge(this);
+			toPort?.DisconnectEdge(this);
+
+			fromPort = null;
+			toPort = null;
 		}
 
 		public override bool ContainsPoint(Vector2 localPoint)
@@ -151,31 +207,197 @@ namespace Loki.Scripts.Editor
 			{
 				var p0 = renderPoints[i].position;
 				var p1 = renderPoints[i + 1].position;
-				if (GeoUtil.PointSqrDistanceToLineSegment(localPoint, p0, p1) <= CONTAINS_CHECK_DISTANCE_THRESHOLD_SQR)
+				if (LokiGeometryUtility.PointSqrDistanceToLineSegment(localPoint, p0, p1) <=
+				    CONTAINS_CHECK_DISTANCE_THRESHOLD_SQR)
 				{
+					isMouseOver = true;
 					return true;
 				}
 			}
 
+			isMouseOver = false;
 			return false;
 		}
 
-		public void Connect(LokiPort port0, LokiPort port1)
+		private void SetCandidatePort(MouseEnterEvent evt)
 		{
-			this.port0?.GetFirstAncestorOfType<LokiNodeView>()
-			    .UnregisterCallback<GeometryChangedEvent>(OnPortGeometryChanged);
-			this.port1?.GetFirstAncestorOfType<LokiNodeView>()
-			    .UnregisterCallback<GeometryChangedEvent>(OnPortGeometryChanged);
+			candidatePort = evt.target as LokiPort;
+		}
 
-			this.port0 = port0;
-			this.port1 = port1;
+		private void DiscardCandidatePort(MouseLeaveEvent evt)
+		{
+			if (candidatePort == evt.target)
+				candidatePort = null;
+		}
 
-			this.port0?.GetFirstAncestorOfType<LokiNodeView>()
-			    .RegisterCallback<GeometryChangedEvent>(OnPortGeometryChanged);
-			this.port1?.GetFirstAncestorOfType<LokiNodeView>()
-			    .RegisterCallback<GeometryChangedEvent>(OnPortGeometryChanged);
+		private void RegisterPortEvents(LokiPort port)
+		{
+			if (port == null)
+				return;
 
+			port.GetFirstAncestorOfType<LokiNodeView>().RegisterCallback<GeometryChangedEvent>(OnPortGeometryChanged);
+		}
+
+		private void UnregisterPortEvents(LokiPort port)
+		{
+			if (port == null)
+				return;
+
+			port.GetFirstAncestorOfType<LokiNodeView>().UnregisterCallback<GeometryChangedEvent>(OnPortGeometryChanged);
+		}
+
+		public void Connect(LokiPort fromPort, LokiPort toPort)
+		{
+			if (fromPort == null)
+				throw new Exception("Cannot start a connection without a source port! 'fromPort' is null.");
+
+			UnregisterPortEvents(fromPort);
+			UnregisterPortEvents(toPort);
+
+			bool b0 = fromPort.ConnectEdge(this);
+			bool b1 = toPort?.ConnectEdge(this) ?? true;
+
+			if (!b0 || !b1)
+			{
+				fromPort.DisconnectEdge(this);
+				toPort?.DisconnectEdge(this);
+				return;
+			}
+
+			this.fromPort = fromPort;
+			this.toPort = toPort;
+
+
+			RegisterPortEvents(fromPort);
+			RegisterPortEvents(toPort);
+
+			switch (state) // Check if edge is closed after this Connect call, or it's still open
+			{
+				case State.Open:
+					this.CaptureMouse();
+					CollectEligiblePorts();
+					break;
+				case State.Closed:
+					this.ReleaseMouse();
+					ReleaseEligiblePorts();
+					break;
+			}
+
+			mouseWorldPosition = this.fromPort.connectionWorldPos;
+
+			TriggerRepaint();
+		}
+
+
+		private void CollectEligiblePorts()
+		{
+			eligiblePorts = graphView.GetEligiblePorts(fromPort);
+
+			foreach (var port in eligiblePorts)
+			{
+				port.RegisterCallback<MouseEnterEvent>(SetCandidatePort);
+				port.RegisterCallback<MouseLeaveEvent>(DiscardCandidatePort);
+			}
+		}
+
+		private void ReleaseEligiblePorts()
+		{
+			if (eligiblePorts == null)
+				return;
+
+			foreach (var port in eligiblePorts)
+			{
+				port.UnregisterCallback<MouseEnterEvent>(SetCandidatePort);
+				port.UnregisterCallback<MouseLeaveEvent>(DiscardCandidatePort);
+			}
+
+			eligiblePorts.Clear();
+			eligiblePorts = null;
+		}
+
+
+		public void TriggerRepaint()
+		{
+			PrepareRenderPoints();
 			MarkDirtyRepaint();
+		}
+
+		private void ReadPort(LokiPort port, out Vector3 point, out Vector3 dir, out Color color)
+		{
+			point = this.WorldToLocal(port.connectionWorldPos);
+			dir = port.directionVec;
+			color = port.color;
+		}
+
+		private void PrepareRenderPoints()
+		{
+			if (state == State.None)
+				return;
+
+			var pos = GetPosition();
+			pos.xMax -= pos.xMin;
+			pos.yMax -= pos.yMin;
+			pos.xMin = 0f;
+			pos.yMin = 0f;
+			SetPosition(pos);
+
+			Vector3 point1;
+			Vector3 dir1;
+			Color color1;
+
+			ReadPort(fromPort, out var point0, out var dir0, out var color0);
+
+			if (toPort == null)
+			{
+				if (candidatePort == null)
+				{
+					point1 = this.WorldToLocal(mouseWorldPosition);
+					dir1 = (fromPort.connectionWorldPos - mouseWorldPosition);
+					color1 = EMPTY_COLOR;
+				}
+				else
+				{
+					ReadPort(candidatePort, out point1, out dir1, out color1);
+				}
+			}
+			else
+			{
+				ReadPort(toPort, out point1, out dir1, out color1);
+			}
+
+			if (isSelected)
+			{
+				color0 += Color.white * 0.5f;
+				color1 += Color.white * 0.5f;
+			}
+
+			point0.z = point1.z = 0f;
+			dir0.Normalize();
+			dir1.Normalize();
+
+			var distance = Vector3.Distance(point0, point1);
+
+			var flatRegionLength = Mathf.Min(FLAT_REGION_LENGTH, distance);
+			var bezierControlPointDistance = Mathf.Min(BEZIER_CONTROL_POINT_DISTANCE, distance);
+
+			var p0 = point0 + dir0 * flatRegionLength;
+			var p1 = point0 + dir0 * bezierControlPointDistance;
+			var p2 = point1 + dir1 * bezierControlPointDistance;
+			var p3 = point1 + dir1 * flatRegionLength;
+
+
+			renderPoints[0] = new RenderPoint(point0, color0);
+			renderPoints[1] = new RenderPoint(p0, color0);
+			renderPoints[RENDER_POINT_COUNT - 2] = new RenderPoint(p3, color1);
+			renderPoints[RENDER_POINT_COUNT - 1] = new RenderPoint(point1, color1);
+
+			for (int i = 2; i < RENDER_POINT_COUNT - 2; i++)
+			{
+				var p = GetBezierRenderPoint(p0, p1, p2, p3, color0, color1, (float) i / (RENDER_POINT_COUNT - 1));
+				renderPoints[i] = p;
+			}
+
+			UpdateLayout();
 		}
 
 
@@ -198,14 +420,16 @@ namespace Loki.Scripts.Editor
 			//min = this.parent.WorldToLocal(min);
 			//max = this.parent.WorldToLocal(max);
 
-
 			var size = max - min;
 
-			style.position = Position.Absolute;
-			style.top = new StyleLength(style.top.value.value + min.y);
-			style.left = new StyleLength(style.left.value.value + min.x);
-			style.width = size.x;
-			style.height = size.y;
+
+			var rect = new Rect(min, size);
+			SetPosition(rect);
+			// style.position = Position.Absolute;
+			// style.top = new StyleLength(min.y);
+			// style.left = new StyleLength(min.x);
+			// style.width = size.x;
+			// style.height = size.y;
 
 
 			for (int i = 0; i < renderPoints.Length; i++)
@@ -214,42 +438,11 @@ namespace Loki.Scripts.Editor
 			}
 		}
 
-
-		private void PrepareVertices(Vector3 point0, Vector3 dir0, Color color0, Vector3 point1, Vector3 dir1,
-		                             Color color1)
-		{
-			point0.z = point1.z = 0f;
-			dir0.Normalize();
-			dir1.Normalize();
-
-			var p0 = point0 + dir0 * FLAT_REGION_LENGTH;
-			var p1 = point0 + dir0 * BEZIER_CONTROL_POINT_DISTANCE;
-			var p2 = point1 + dir1 * BEZIER_CONTROL_POINT_DISTANCE;
-			var p3 = point1 + dir1 * FLAT_REGION_LENGTH;
-
-
-			renderPoints[0] = new RenderPoint(point0, color0);
-			renderPoints[1] = new RenderPoint(p0, color0);
-			renderPoints[RENDER_POINT_COUNT - 2] = new RenderPoint(p3, color1);
-			renderPoints[RENDER_POINT_COUNT - 1] = new RenderPoint(point1, color1);
-
-			for (int i = 2; i < RENDER_POINT_COUNT - 2; i++)
-			{
-				var p = GetBezierRenderPoint(p0, p1, p2, p3, color0, color1, (float) i / (RENDER_POINT_COUNT - 1));
-				renderPoints[i] = p;
-			}
-
-			UpdateLayout();
-		}
-
-		private void GenerateVisualContent(MeshGenerationContext cxt)
-		{
-			DrawEdge(cxt);
-		}
-
-
 		private void DrawEdge(MeshGenerationContext cxt)
 		{
+			if (state == State.None)
+				return;
+
 			uint vertexCount = RENDER_POINT_COUNT * 2;
 			uint indexCount = (vertexCount - 2) * 3;
 
@@ -328,6 +521,11 @@ namespace Loki.Scripts.Editor
 				position = p,
 				color = c
 			};
+		}
+
+		public void CollectElements(HashSet<GraphElement> collectedElementSet, Func<GraphElement, bool> conditionFunc)
+		{
+			collectedElementSet.Add(this);
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Loki.Editor.Utility;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -26,6 +27,7 @@ namespace Loki.Editor
 		private readonly VisualElement headerContainer;
 		private readonly VisualElement midContainer;
 
+		public string guid = Guid.NewGuid().ToString();
 
 		public LokiNodeView(int i)
 		{
@@ -62,12 +64,12 @@ namespace Loki.Editor
 
 		private void OnMouseEnter(MouseEnterEvent evt)
 		{
-			selectionBorder.AddToClassList(HOVER_CLASS_NAME);
+			selectionBorder.AddToClassList(LokiEditorUtility.CLASS_HOVER);
 		}
 
 		private void OnMouseLeave(MouseLeaveEvent evt)
 		{
-			selectionBorder.RemoveFromClassList(HOVER_CLASS_NAME);
+			selectionBorder.RemoveFromClassList(LokiEditorUtility.CLASS_HOVER);
 		}
 
 		private void OnRootGeometryChanged(GeometryChangedEvent evt)
@@ -81,14 +83,14 @@ namespace Loki.Editor
 		public override void OnSelected()
 		{
 			base.OnSelected();
-			selectionBorder.AddToClassList(SELECTED_CLASS_NAME);
+			selectionBorder.AddToClassList(LokiEditorUtility.CLASS_SELECTED);
 			//selectionBorder.RemoveFromClassList(UNSELECTED_CLASS_NAME);
 		}
 
 		public override void OnUnselected()
 		{
 			base.OnUnselected();
-			selectionBorder.RemoveFromClassList(SELECTED_CLASS_NAME);
+			selectionBorder.RemoveFromClassList(LokiEditorUtility.CLASS_SELECTED);
 //			selectionBorder.AddToClassList(UNSELECTED_CLASS_NAME);
 		}
 

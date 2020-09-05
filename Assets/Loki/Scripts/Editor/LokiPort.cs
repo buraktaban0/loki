@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Loki.Editor.Utility;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -14,14 +17,16 @@ namespace Loki.Editor
 
 	public class LokiPort : VisualElement
 	{
-		private const string HOVER_CLASS_NAME = "hover";
-
 		private readonly VisualElement capBorder;
 		private readonly VisualElement cap;
 
 		private readonly VisualElement connectionPoint;
 
 		public override bool canGrabFocus => true;
+
+		public List<LokiEdge> edges = new List<LokiEdge>();
+
+		public LokiGraphView graphView => this.GetFirstAncestorOfType<LokiGraphView>();
 
 		public Color color
 		{
@@ -43,7 +48,15 @@ namespace Loki.Editor
 			get { return cap.parent.LocalToWorld(cap.layout.center); }
 		}
 
-		public LokiPort(Orientation portOrientation, Direction portDirection, Capacity portCapacity)
+		public int  connectionCount => edges.Count;
+		public bool hasConnections  => connectionCount > 0;
+
+		public bool hasCapacity => connectionCount < (int) capacity;
+
+		public Capacity capacity;
+
+		public LokiPort(Orientation portOrientation, Direction portDirection, Capacity capacity,
+		                string name = "Unnamed Port")
 		{
 			var vst = LokiResources.Get<VisualTreeAsset>("UXML/LokiPort.uxml");
 			var ss = LokiResources.Get<StyleSheet>("StyleSheets/LokiPort.uss");
@@ -52,7 +65,8 @@ namespace Loki.Editor
 
 			this.styleSheets.Add(ss);
 
-			this.name = "Dummy Port";
+			this.capacity = capacity;
+			this.name = name;
 
 			this.pickingMode = PickingMode.Position;
 
@@ -65,35 +79,89 @@ namespace Loki.Editor
 			capBorder = this.Q<VisualElement>("outline-border");
 			cap = this.Q<VisualElement>("cap");
 
+			cap.visible = false;
+
 			connectionPoint.RegisterCallback<MouseEnterEvent>(OnMouseEnterConnection);
 			connectionPoint.RegisterCallback<MouseLeaveEvent>(OnMouseLeaveConnection);
 
 			connectionPoint.RegisterCallback<MouseDownEvent>(OnMouseDownConnection);
 		}
 
-
 		protected virtual void OnMouseEnterConnection(MouseEnterEvent evt)
 		{
-			cap.AddToClassList(HOVER_CLASS_NAME);
-			capBorder.AddToClassList(HOVER_CLASS_NAME);
+			cap.AddToClassList(LokiEditorUtility.CLASS_HOVER);
+			capBorder.AddToClassList(LokiEditorUtility.CLASS_HOVER);
+
+			RefreshPortState();
 		}
 
 		protected virtual void OnMouseLeaveConnection(MouseLeaveEvent evt)
 		{
-			cap.RemoveFromClassList(HOVER_CLASS_NAME);
-			capBorder.RemoveFromClassList(HOVER_CLASS_NAME);
+			cap.RemoveFromClassList(LokiEditorUtility.CLASS_HOVER);
+			capBorder.RemoveFromClassList(LokiEditorUtility.CLASS_HOVER);
+
+			RefreshPortState();
 		}
 
 		protected virtual void OnMouseDownConnection(MouseDownEvent evt)
 		{
 			evt.StopImmediatePropagation();
+			StartConnection();
 		}
-
 
 		public void SetColor(Color color)
 		{
 			capBorder.style.color = color;
 			cap.style.backgroundColor = color;
+
+
+			RefreshPortState();
+		}
+
+		public void RefreshPortState()
+		{
+			cap.visible = hasConnections;
+
+			this.RunLater(() =>
+			{
+				foreach (var edge in edges)
+				{
+					edge.TriggerRepaint();
+				}
+			});
+		}
+
+		public void StartConnection()
+		{
+			if (!hasCapacity)
+				return;
+
+			var edge = new LokiEdge();
+			graphView.AddElement(edge);
+			edge.Connect(this, null);
+
+			RefreshPortState();
+		}
+
+		public bool ConnectEdge(LokiEdge edge)
+		{
+			if (!hasCapacity)
+				return false;
+			
+			if (!edges.Contains(edge))
+				edges.Add(edge);
+
+			RefreshPortState();
+
+			return true;
+		}
+
+		public void DisconnectEdge(LokiEdge edge)
+		{
+			if (edges.Contains(edge))
+				edges.Remove(edge);
+
+			RefreshPortState();
 		}
 	}
 }

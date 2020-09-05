@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Loki.Editor;
-using Loki.Scripts.Editor;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -11,6 +10,17 @@ using UnityEngine.UIElements;
 public class LokiGraphView : GraphView
 {
 	private static readonly string STYLE_SHEET_PATH = "Assets/Loki/Res/StyleSheets/LokiStyle.uss";
+
+
+	protected override bool canPaste              => true;
+	protected override bool canCopySelection      => true;
+	protected override bool canCutSelection       => canCopySelection;
+	protected override bool canDeleteSelection    => canCopySelection;
+	protected override bool canDuplicateSelection => canCopySelection;
+
+
+	public new List<LokiPort> ports => this.Query<LokiPort>().ToList();
+	public new List<LokiEdge> edges => this.Query<LokiEdge>().ToList();
 
 	public LokiGraphView()
 	{
@@ -32,25 +42,34 @@ public class LokiGraphView : GraphView
 		this.AddElement(node);
 
 		var nodeView2 = new LokiNodeView(0);
-		nodeView2.SetPosition(Vector2.one * 400f);
+		nodeView2.SetPosition(Vector2.one * 300f);
 
 		var nodeView = new LokiNodeView(1);
-		nodeView.SetPosition(Vector3.right * 200f + Vector3.down * 100f);
+		nodeView.SetPosition(Vector3.right * 200f + Vector3.up * 100f);
 
 		this.AddElement(nodeView);
 		this.AddElement(nodeView2);
 
-		EventCallback<GeometryChangedEvent> func = null;
-		func = evt =>
-		{
-			var edge = new LokiEdge();
-			edge.Connect(nodeView.Q<LokiPort>(), nodeView2.Q<LokiPort>());
-			this.AddElement(edge);
-			nodeView.UnregisterCallback<GeometryChangedEvent>(func);
-		};
 
-		nodeView.RegisterCallback<GeometryChangedEvent>(func);
+		// EventCallback<GeometryChangedEvent> func = null;
+		// func = evt =>
+		// {
+		// 	var edge = new LokiEdge();
+		// 	edge.Connect(nodeView.Q<LokiPort>(), null); // nodeView2.Q<LokiPort>());
+		// 	this.AddElement(edge);
+		// 	nodeView.UnregisterCallback<GeometryChangedEvent>(func);
+		// };
+		//
+		// nodeView.RegisterCallback<GeometryChangedEvent>(func);
+	}
 
-		
+
+	public List<LokiPort> GetEligiblePorts(LokiPort fromPort)
+	{
+		var ports = new List<LokiPort>();
+
+		ports.AddRange(this.ports);
+
+		return ports;
 	}
 }

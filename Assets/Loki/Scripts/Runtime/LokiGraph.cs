@@ -2,9 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LokiGraph : ScriptableObject
+namespace Loki.Runtime
 {
-	
-	
-	
+	[System.Serializable]
+	public class LokiGraph
+	{
+		public UnityEngine.Object owner;
+
+		public string GetName()
+		{
+			return $"Graph - {owner.name}";
+		}
+	}
 }

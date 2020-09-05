@@ -1,4 +1,5 @@
 ﻿using System;
+using Loki.Runtime;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -19,9 +20,9 @@ namespace UniNode.Scripts.Editor
 		}
 
 
-		public static void EditAsset(LokiGraph graph)
+		public static void EditGraph(LokiGraph graph)
 		{
-			Debug.Log("Editing " + graph.name);
+			Debug.Log("Editing " + graph.GetName());
 		}
 
 

@@ -21,19 +21,24 @@
           <e p="Scripts" t="Include">
             <e p="Editor" t="Include">
               <e p="LokiEdge.cs" t="Include" />
+              <e p="LokiFilter.cs" t="Include" />
               <e p="LokiFlowPort.cs" t="Include" />
               <e p="LokiGraphView.cs" t="Include" />
               <e p="LokiGraphWindow.cs" t="Include" />
+              <e p="LokiNodeAdapter.cs" t="Include" />
               <e p="LokiNodeView.cs" t="Include" />
               <e p="LokiPort.cs" t="Include" />
               <e p="LokiResources.cs" t="Include" />
+              <e p="SearchWindowProvider.cs" t="Include" />
               <e p="Utility" t="Include">
-                <e p="GeoUtil.cs" t="Include" />
                 <e p="LokiAssetHandler.cs" t="Include" />
+                <e p="LokiEditorUtility.cs" t="Include" />
+                <e p="LokiGeometryUtility.cs" t="Include" />
               </e>
             </e>
             <e p="Runtime" t="Include">
               <e p="LokiGraph.cs" t="Include" />
+              <e p="LokiGraphAsset.cs" t="Include" />
               <e p="LokiNode.cs" t="Include" />
               <e p="Settings" t="Include">
                 <e p="LokiSettings.cs" t="Include" />

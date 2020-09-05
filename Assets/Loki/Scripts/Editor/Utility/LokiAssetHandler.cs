@@ -1,4 +1,5 @@
-﻿using UniNode.Scripts.Editor;
+﻿using Loki.Runtime;
+using UniNode.Scripts.Editor;
 using UnityEditor;
 using UnityEditor.Callbacks;
 
@@ -9,12 +10,12 @@ namespace Loki.Editor.Utility
 		[OnOpenAsset(1)]
 		public static bool OnAssetOpened(int instanceID, int line)
 		{
-			LokiGraph graph = EditorUtility.InstanceIDToObject(instanceID) as LokiGraph;
+			LokiGraphAsset graphAsset = EditorUtility.InstanceIDToObject(instanceID) as LokiGraphAsset;
 
-			if (graph == null)
+			if (graphAsset == null)
 				return false;
 
-			LokiGraphWindow.EditAsset(graph);
+			LokiGraphWindow.EditGraph(graphAsset.graph);
 
 			return true;
 		}

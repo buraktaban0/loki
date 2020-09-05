@@ -16,11 +16,11 @@ LokiNodeView {
 }
 
 .selection-border.hover {
-    border-color: rgba(255, 0, 255, 0.3);
+    border-color: rgba(255, 0, 255, 0.25);
 }
 
 .selection-border.selected {
-    border-color: rgba(255, 0, 255, 0.6);
+    border-color: rgba(255, 0, 255, 0.45);
 }
 
 .selection-border.selected.hover {

@@ -2,7 +2,7 @@
 
 namespace Loki.Editor.Utility
 {
-	public static class GeoUtil
+	public static class LokiGeometryUtility
 	{
 		public static Vector2 ClosestPointOnLine(Vector2 p, Vector2 a, Vector2 b)
 		{
