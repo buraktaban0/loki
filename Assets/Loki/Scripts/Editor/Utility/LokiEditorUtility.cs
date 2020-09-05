@@ -20,10 +20,28 @@ namespace Loki.Editor.Utility
 			element.SetPosition(rect);
 		}
 
+
+		public static LokiPort InsertPort(this VisualElement container, int index, Orientation orientation,
+		                                  Direction direction,
+		                                  Capacity capacity,
+		                                  string name)
+		{
+			var port = new LokiFlowPort(orientation, direction, capacity, name);
+			container.Insert(index, port);
+			return port;
+		}
+
+		public static LokiPort AddPort(this VisualElement container, Orientation orientation, Direction direction,
+		                               Capacity capacity,
+		                               string name) => InsertPort(container, container.childCount, orientation, direction, capacity, name);
+
 		public static void RunLater(this VisualElement element, Action action, long delayMs = 1)
 		{
 			var exec = element.schedule.Execute(action);
 			exec.ExecuteLater(delayMs);
 		}
+		
+		
+		
 	}
 }

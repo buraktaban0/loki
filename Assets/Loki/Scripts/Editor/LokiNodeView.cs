@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Loki.Editor.Adapters;
 using Loki.Editor.Utility;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
@@ -10,9 +11,9 @@ namespace Loki.Editor
 {
 	public class LokiNodeView : GraphElement, ICollectibleElement
 	{
-		public static LokiNodeView Get(LokiNode node)
+		public static LokiNodeView Get(LokiNodeAdapter adapter)
 		{
-			var nodeView = new LokiNodeView(0);
+			var nodeView = new LokiNodeView(adapter);
 
 			return nodeView;
 		}
@@ -24,13 +25,19 @@ namespace Loki.Editor
 		private readonly VisualElement container;
 		private readonly VisualElement selectionBorder;
 
-		private readonly VisualElement headerContainer;
-		private readonly VisualElement midContainer;
+		public readonly VisualElement headerContainer;
+		public readonly VisualElement midContainer;
+
+		public readonly Label titleLabel;
 
 		public string guid = Guid.NewGuid().ToString();
 
-		public LokiNodeView(int i)
+		public LokiNodeAdapter adapter;
+
+		public LokiNodeView(LokiNodeAdapter adapter)
 		{
+			this.adapter = adapter;
+
 			var visualTree = LokiResources.Get<VisualTreeAsset>("UXML/LokiNodeView.uxml");
 			visualTree.CloneTree(this);
 
@@ -51,15 +58,15 @@ namespace Loki.Editor
 			headerContainer = this.Q<VisualElement>("header-container");
 			midContainer = this.Q<VisualElement>("mid-container");
 
+			titleLabel = headerContainer.Q<Label>("title");
 
-			var port = new LokiPort(Orientation.Horizontal, i == 0 ? Direction.Input : Direction.Output,
-			                        Capacity.Single);
-			headerContainer.Insert(i, port);
 
 			container.RegisterCallback<GeometryChangedEvent>(OnRootGeometryChanged);
 
 			this.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
 			this.RegisterCallback<MouseLeaveEvent>(OnMouseLeave);
+
+			adapter.BuildNodeView(this);
 		}
 
 		private void OnMouseEnter(MouseEnterEvent evt)

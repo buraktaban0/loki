@@ -56,12 +56,12 @@ namespace Loki.Editor
 			return this.set.IsSubsetOf(other.set);
 		}
 
-		public bool Fits(string filter)
+		public bool Contains(string filter)
 		{
 			return this.set.Contains(filter);
 		}
 
-		public bool Fits(IEnumerable<string> filters)
+		public bool Intersects(IEnumerable<string> filters)
 		{
 			return this.set.Intersect(filters).Any();
 		}

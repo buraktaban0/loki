@@ -9,6 +9,7 @@
           <e p="Res" t="Include">
             <e p="Stylesheets" t="Include">
               <e p="LokiEdge.uss" t="Include" />
+              <e p="LokiFlowPort.uss" t="Include" />
               <e p="LokiNodeView.uss" t="Include" />
               <e p="LokiPort.uss" t="Include" />
               <e p="LokiStyle.uss" t="Include" />
@@ -20,20 +21,27 @@
           </e>
           <e p="Scripts" t="Include">
             <e p="Editor" t="Include">
+              <e p="Adapters" t="Include">
+                <e p="LokiNodeAdapter.cs" t="Include" />
+                <e p="VariableAdapter.cs" t="Include" />
+              </e>
               <e p="LokiEdge.cs" t="Include" />
               <e p="LokiFilter.cs" t="Include" />
               <e p="LokiFlowPort.cs" t="Include" />
               <e p="LokiGraphView.cs" t="Include" />
               <e p="LokiGraphWindow.cs" t="Include" />
-              <e p="LokiNodeAdapter.cs" t="Include" />
               <e p="LokiNodeView.cs" t="Include" />
               <e p="LokiPort.cs" t="Include" />
               <e p="LokiResources.cs" t="Include" />
               <e p="SearchWindowProvider.cs" t="Include" />
+              <e p="Serialization" t="Include">
+                <e p="SerializableNodeView.cs" t="Include" />
+              </e>
               <e p="Utility" t="Include">
                 <e p="LokiAssetHandler.cs" t="Include" />
                 <e p="LokiEditorUtility.cs" t="Include" />
                 <e p="LokiGeometryUtility.cs" t="Include" />
+                <e p="PolygonDrawer.cs" t="Include" />
               </e>
             </e>
             <e p="Runtime" t="Include">

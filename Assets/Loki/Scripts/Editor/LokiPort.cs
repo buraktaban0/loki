@@ -81,10 +81,17 @@ namespace Loki.Editor
 
 			cap.visible = false;
 
+			cap.pickingMode = PickingMode.Ignore;
+			capBorder.pickingMode = PickingMode.Ignore;
+
 			connectionPoint.RegisterCallback<MouseEnterEvent>(OnMouseEnterConnection);
 			connectionPoint.RegisterCallback<MouseLeaveEvent>(OnMouseLeaveConnection);
 
 			connectionPoint.RegisterCallback<MouseDownEvent>(OnMouseDownConnection);
+
+			connectionPoint.focusable = true;
+			connectionPoint.pickingMode = PickingMode.Position;
+			connectionPoint.AddManipulator(new ContextualMenuManipulator(OnContextMenuPopulate));
 		}
 
 		protected virtual void OnMouseEnterConnection(MouseEnterEvent evt)
@@ -105,8 +112,17 @@ namespace Loki.Editor
 
 		protected virtual void OnMouseDownConnection(MouseDownEvent evt)
 		{
-			evt.StopImmediatePropagation();
-			StartConnection();
+			if (evt.button == 0)
+			{
+				evt.StopImmediatePropagation();
+				StartConnection();
+			}
+		}
+
+		private void OnContextMenuPopulate(ContextualMenuPopulateEvent evt)
+		{
+			Debug.Log("context menu");
+			evt.menu.AppendAction("Disconnect All", action => DisconnectAllEdges(), DropdownMenuAction.Status.Normal);
 		}
 
 		public void SetColor(Color color)
@@ -133,9 +149,6 @@ namespace Loki.Editor
 
 		public void StartConnection()
 		{
-			if (!hasCapacity)
-				return;
-
 			var edge = new LokiEdge();
 			graphView.AddElement(edge);
 			edge.Connect(this, null);
@@ -146,8 +159,10 @@ namespace Loki.Editor
 		public bool ConnectEdge(LokiEdge edge)
 		{
 			if (!hasCapacity)
-				return false;
-			
+			{
+				edges.First().DestroySelf();
+			}
+
 			if (!edges.Contains(edge))
 				edges.Add(edge);
 
@@ -160,6 +175,20 @@ namespace Loki.Editor
 		{
 			if (edges.Contains(edge))
 				edges.Remove(edge);
+
+			if (edge.isDestroyed == false)
+				edge.DestroySelf();
+
+			RefreshPortState();
+		}
+
+
+		private void DisconnectAllEdges()
+		{
+			for (int i = 0; i < edges.Count; i++)
+			{
+				DisconnectEdge(edges[i]);
+			}
 
 			RefreshPortState();
 		}

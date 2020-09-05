@@ -2,10 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using Loki.Editor;
+using Loki.Editor.Adapters;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
+
+public class TestClass
+{
+	public float x;
+	public string y;
+}
 
 public class LokiGraphView : GraphView
 {
@@ -29,7 +36,7 @@ public class LokiGraphView : GraphView
 		this.AddManipulator(new SelectionDragger());
 		this.AddManipulator(new RectangleSelector());
 
-		SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);
+		SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale * 2f);
 
 		var styleSheet = EditorGUIUtility.Load(STYLE_SHEET_PATH) as StyleSheet;
 		styleSheets.Add(styleSheet);
@@ -41,10 +48,15 @@ public class LokiGraphView : GraphView
 
 		this.AddElement(node);
 
-		var nodeView2 = new LokiNodeView(0);
+
+		var type = typeof(TestClass);
+		var f0 = type.GetField("x");
+		var f1 = type.GetField("y");
+
+		var nodeView2 = new LokiNodeView(new VariableAdapter(f0));
 		nodeView2.SetPosition(Vector2.one * 300f);
 
-		var nodeView = new LokiNodeView(1);
+		var nodeView = new LokiNodeView(new VariableAdapter(f1));
 		nodeView.SetPosition(Vector3.right * 200f + Vector3.up * 100f);
 
 		this.AddElement(nodeView);

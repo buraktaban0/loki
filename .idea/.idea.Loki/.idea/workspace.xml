@@ -20,24 +20,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6ff2996-1f46-41af-b7c9-4a3dcb42f3a6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiFilter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeAdapter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/SearchWindowProvider.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/LokiEditorUtility.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/LokiGraphAsset.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiFlowPort.uss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/right_arrow_border.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/right_arrow_border.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/right_arrow_border.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/right_arrow_border.svg.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/right_arrow_cap.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/right_arrow_cap.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Adapters/LokiNodeAdapter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Adapters/VariableAdapter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Serialization/SerializableNodeView.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/PolygonDrawer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/PolygonDrawer.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiEdge.uss" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiEdge.uss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiNodeView.uss" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiNodeView.uss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiPort.uss" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiPort.uss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiEdge.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiEdge.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiFilter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiFlowPort.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiFlowPort.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphWindow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeAdapter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeAdapter.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiPort.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiPort.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/GeoUtil.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/LokiGeometryUtility.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/GeoUtil.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/LokiAssetHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/LokiAssetHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/LokiGraph.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/LokiGraph.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/SearchWindowProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/SearchWindowProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/LokiEditorUtility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/LokiEditorUtility.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +58,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9C9FA79E-FE9E-479A-8CBE-7A6F99F673D3/e1/38f532f3/VisualElement.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D1BEC468-8006-4709-A5E7-13AD543E6D96/a7/a935e3ef/EdgeManipulator.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/49F4E7E7-91CC-4FFF-ACD8-8F729E2B1E4C/2d/6189f28f/ScriptableObject.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9C9FA79E-FE9E-479A-8CBE-7A6F99F673D3/b0/d8d352c1/MeshGenerationContext.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -63,34 +72,39 @@
         <option value="$PROJECT_DIR$/Assets/Loki/Res/Stylesheets/LokiStyle.uss" />
         <option value="$PROJECT_DIR$/Assets/Loki/Res/Stylesheets/LokiNodeView.uss" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiResources.cs" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiFlowPort.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiStyle.uss" />
         <option value="$PROJECT_DIR$/../zerosum/crane-master/Assets/Scripts/CarIndicator.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiNodeView.uxml" />
         <option value="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiNodeView.uxml" />
         <option value="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiPort.uxml" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiPort.uss" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Edge.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/GeoUtil.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/EdgeDrawer.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/LokiUIUtility.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiEdge.uss" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/LokiEditorUtility.cs" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiNodeView.uss" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiNodeView.uss" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiPort.cs" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/SearchWindowProvider.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/LokiGraphAsset.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/LokiAssetHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/LokiGraph.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphWindow.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/SearchWindowProvider.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeAdapter.cs" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiEdge.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Adapters/LokiNodeAdapter.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNodeView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Adapters/VariableAdapter.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiNodeView.uss" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiNodeView.uss" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Serialization/SerializableNodeView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiPort.uss" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiFilter.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiPort.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiEdge.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiFlowPort.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/LokiEditorUtility.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/PolygonDrawer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiFlowPort.uss" />
       </list>
     </option>
   </component>
@@ -144,7 +158,7 @@
       <workItem from="1599055610819" duration="2384000" />
       <workItem from="1599072365769" duration="9961000" />
       <workItem from="1599154458744" duration="17229000" />
-      <workItem from="1599240155226" duration="25682000" />
+      <workItem from="1599240155226" duration="38879000" />
     </task>
     <servers />
   </component>
@@ -188,14 +202,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="VCS.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1599247402663" />
-    <state x="616" y="240" key="run.anything.popup" timestamp="1599241389845">
+    <state x="616" y="240" key="run.anything.popup" timestamp="1599317051206">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1599241389845" />
-    <state x="623" y="230" width="672" height="653" key="search.everywhere.popup" timestamp="1599248528576">
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1599317051206" />
+    <state x="623" y="230" width="672" height="653" key="search.everywhere.popup" timestamp="1599314784253">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1297" y="14" width="672" height="678" key="search.everywhere.popup/-1920.-225.1920.1080/0.0.1792.1120@-1920.-225.1920.1080" timestamp="1599036291185" />
-    <state x="623" y="230" width="672" height="653" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1599248528576" />
+    <state x="623" y="230" width="672" height="653" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1599314784253" />
   </component>
 </project>

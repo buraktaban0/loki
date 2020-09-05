@@ -24,7 +24,7 @@ namespace Loki.Editor
 
 	public class LokiEdge : GraphElement, ICollectibleElement
 	{
-		public const int RENDER_POINT_COUNT = 48;
+		public const int RENDER_POINT_COUNT = 64;
 
 		public const float FLAT_REGION_LENGTH = 25f;
 		public const float BEZIER_CONTROL_POINT_DISTANCE = 125f;
@@ -63,24 +63,22 @@ namespace Loki.Editor
 
 		public State state => (State) validPortCount;
 
+		public bool isDestroyed { get; set; } = false;
+
 
 		private Vector3 mouseWorldPosition;
+
 
 		public LokiEdge()
 		{
 			styleSheets.Add(LokiResources.Get<StyleSheet>("StyleSheets/LokiEdge.uss"));
-
 			capabilities |= Capabilities.Selectable | Capabilities.Deletable;
 			usageHints = UsageHints.DynamicTransform;
-
 			generateVisualContent += OnGenerateVisualContent;
-
 			RegisterCallback<MouseEnterEvent>(OnMouseEnter);
 			RegisterCallback<MouseLeaveEvent>(OnMouseLeave);
-
 			RegisterCallback<AttachToPanelEvent>(OnAttachToPanel);
 			RegisterCallback<DetachFromPanelEvent>(OnDetachFromPanel);
-
 			this.AddManipulator(new ContextualMenuManipulator(OnContextMenuPopulate));
 		}
 
@@ -110,9 +108,7 @@ namespace Loki.Editor
 		{
 			if (state != State.Closed)
 				return;
-
 			RemoveFromClassList(LokiEditorUtility.CLASS_HOVER);
-
 			actualHalfWidth = HALF_WIDTH;
 			TriggerRepaint();
 		}
@@ -121,9 +117,7 @@ namespace Loki.Editor
 		{
 			if (state != State.Closed)
 				return;
-
 			AddToClassList(LokiEditorUtility.CLASS_HOVER);
-
 			actualHalfWidth = HALF_WIDTH * 2f;
 			TriggerRepaint();
 		}
@@ -132,16 +126,16 @@ namespace Loki.Editor
 		public override void OnSelected()
 		{
 			isSelected = true;
-			TriggerRepaint();
 
+			TriggerRepaint();
 			base.OnSelected();
 		}
 
 		public override void OnUnselected()
 		{
 			isSelected = false;
-			TriggerRepaint();
 
+			TriggerRepaint();
 			base.OnUnselected();
 		}
 
@@ -186,17 +180,15 @@ namespace Loki.Editor
 				}
 			}
 
-
 			base.HandleEvent(evt);
 		}
 
-		private void DestroySelf()
+		public void DestroySelf()
 		{
+			isDestroyed = true;
 			this.RemoveFromHierarchy();
-
 			fromPort?.DisconnectEdge(this);
 			toPort?.DisconnectEdge(this);
-
 			fromPort = null;
 			toPort = null;
 		}
@@ -234,7 +226,6 @@ namespace Loki.Editor
 		{
 			if (port == null)
 				return;
-
 			port.GetFirstAncestorOfType<LokiNodeView>().RegisterCallback<GeometryChangedEvent>(OnPortGeometryChanged);
 		}
 
@@ -242,31 +233,29 @@ namespace Loki.Editor
 		{
 			if (port == null)
 				return;
-
 			port.GetFirstAncestorOfType<LokiNodeView>().UnregisterCallback<GeometryChangedEvent>(OnPortGeometryChanged);
 		}
 
 		public void Connect(LokiPort fromPort, LokiPort toPort)
 		{
 			if (fromPort == null)
-				throw new Exception("Cannot start a connection without a source port! 'fromPort' is null.");
-
-			UnregisterPortEvents(fromPort);
-			UnregisterPortEvents(toPort);
-
-			bool b0 = fromPort.ConnectEdge(this);
-			bool b1 = toPort?.ConnectEdge(this) ?? true;
-
-			if (!b0 || !b1)
 			{
-				fromPort.DisconnectEdge(this);
-				toPort?.DisconnectEdge(this);
+				DestroySelf();
 				return;
 			}
 
+			if (fromPort == toPort)
+			{
+				DestroySelf();
+				return;
+			}
+
+			UnregisterPortEvents(this.fromPort);
+			UnregisterPortEvents(this.toPort);
+
+
 			this.fromPort = fromPort;
 			this.toPort = toPort;
-
 
 			RegisterPortEvents(fromPort);
 			RegisterPortEvents(toPort);
@@ -278,13 +267,14 @@ namespace Loki.Editor
 					CollectEligiblePorts();
 					break;
 				case State.Closed:
+					fromPort.ConnectEdge(this);
+					toPort.ConnectEdge(this);
 					this.ReleaseMouse();
 					ReleaseEligiblePorts();
 					break;
 			}
 
 			mouseWorldPosition = this.fromPort.connectionWorldPos;
-
 			TriggerRepaint();
 		}
 
@@ -292,7 +282,6 @@ namespace Loki.Editor
 		private void CollectEligiblePorts()
 		{
 			eligiblePorts = graphView.GetEligiblePorts(fromPort);
-
 			foreach (var port in eligiblePorts)
 			{
 				port.RegisterCallback<MouseEnterEvent>(SetCandidatePort);
@@ -304,7 +293,6 @@ namespace Loki.Editor
 		{
 			if (eligiblePorts == null)
 				return;
-
 			foreach (var port in eligiblePorts)
 			{
 				port.UnregisterCallback<MouseEnterEvent>(SetCandidatePort);
@@ -333,20 +321,17 @@ namespace Loki.Editor
 		{
 			if (state == State.None)
 				return;
-
 			var pos = GetPosition();
 			pos.xMax -= pos.xMin;
 			pos.yMax -= pos.yMin;
 			pos.xMin = 0f;
 			pos.yMin = 0f;
 			SetPosition(pos);
-
 			Vector3 point1;
 			Vector3 dir1;
 			Color color1;
 
 			ReadPort(fromPort, out var point0, out var dir0, out var color0);
-
 			if (toPort == null)
 			{
 				if (candidatePort == null)
@@ -360,6 +345,7 @@ namespace Loki.Editor
 					ReadPort(candidatePort, out point1, out dir1, out color1);
 				}
 			}
+
 			else
 			{
 				ReadPort(toPort, out point1, out dir1, out color1);
@@ -374,23 +360,17 @@ namespace Loki.Editor
 			point0.z = point1.z = 0f;
 			dir0.Normalize();
 			dir1.Normalize();
-
 			var distance = Vector3.Distance(point0, point1);
-
 			var flatRegionLength = Mathf.Min(FLAT_REGION_LENGTH, distance);
 			var bezierControlPointDistance = Mathf.Min(BEZIER_CONTROL_POINT_DISTANCE, distance);
-
 			var p0 = point0 + dir0 * flatRegionLength;
 			var p1 = point0 + dir0 * bezierControlPointDistance;
 			var p2 = point1 + dir1 * bezierControlPointDistance;
 			var p3 = point1 + dir1 * flatRegionLength;
-
-
 			renderPoints[0] = new RenderPoint(point0, color0);
 			renderPoints[1] = new RenderPoint(p0, color0);
 			renderPoints[RENDER_POINT_COUNT - 2] = new RenderPoint(p3, color1);
 			renderPoints[RENDER_POINT_COUNT - 1] = new RenderPoint(point1, color1);
-
 			for (int i = 2; i < RENDER_POINT_COUNT - 2; i++)
 			{
 				var p = GetBezierRenderPoint(p0, p1, p2, p3, color0, color1, (float) i / (RENDER_POINT_COUNT - 1));
@@ -404,7 +384,9 @@ namespace Loki.Editor
 		private void UpdateLayout()
 		{
 			float xMin = float.MaxValue, yMin = float.MaxValue, xMax = float.MinValue, yMax = float.MinValue;
-			for (int i = 0; i < renderPoints.Length; i++)
+			for (int i = 0;
+				i < renderPoints.Length;
+				i++)
 			{
 				var p = renderPoints[i];
 				xMin = Mathf.Min(xMin, p.position.x);
@@ -414,25 +396,24 @@ namespace Loki.Editor
 			}
 
 			var padding = actualHalfWidth * 8f;
-
 			var min = new Vector3(xMin - padding, yMin - padding);
+
 			var max = new Vector3(xMax + padding, yMax + padding);
 			//min = this.parent.WorldToLocal(min);
 			//max = this.parent.WorldToLocal(max);
 
 			var size = max - min;
-
-
 			var rect = new Rect(min, size);
+
 			SetPosition(rect);
 			// style.position = Position.Absolute;
 			// style.top = new StyleLength(min.y);
 			// style.left = new StyleLength(min.x);
 			// style.width = size.x;
 			// style.height = size.y;
-
-
-			for (int i = 0; i < renderPoints.Length; i++)
+			for (int i = 0;
+				i < renderPoints.Length;
+				i++)
 			{
 				renderPoints[i].position -= min;
 			}
@@ -442,14 +423,14 @@ namespace Loki.Editor
 		{
 			if (state == State.None)
 				return;
-
 			uint vertexCount = RENDER_POINT_COUNT * 2;
 			uint indexCount = (vertexCount - 2) * 3;
-
 			var mesh = cxt.Allocate((int) vertexCount, (int) indexCount, null);
 
 			Vector3 normal = default;
-			for (int i = 0; i < RENDER_POINT_COUNT; i++)
+			for (int i = 0;
+				i < RENDER_POINT_COUNT;
+				i++)
 			{
 				if (i < RENDER_POINT_COUNT - 1)
 				{
@@ -504,18 +485,14 @@ namespace Loki.Editor
 		                                         float t)
 		{
 			t = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01((t)));
-
 			var p01 = Vector3.Lerp(p0, p1, t);
 			var p12 = Vector3.Lerp(p1, p2, t);
 			var p23 = Vector3.Lerp(p2, p3, t);
-
 			var p02 = Vector3.Lerp(p01, p12, t);
 			var p13 = Vector3.Lerp(p12, p23, t);
-
 			var p = Vector3.Lerp(p02, p13, t);
 
 			var c = Color.Lerp(color0, color1, t);
-
 			return new RenderPoint
 			{
 				position = p,

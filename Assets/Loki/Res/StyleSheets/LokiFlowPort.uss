@@ -1,5 +1,5 @@
 
-LokiPort {
+LokiFlowPort {
     padding: 0;
     margin: 0;
     flex-grow: 1;
@@ -13,10 +13,10 @@ LokiPort:hover {
 }
 
 .connection-point {
-    min-width: 15px;
-    min-height: 15px;
-    width: 17px;
-    height: 17px;
+    min-width: 19px;
+    min-height: 19px;
+    width: 19px;
+    height: 19px;
     padding: 4px;
     border-color: rgba(0, 0, 0, 0);
     background-color: rgba(0, 0, 0, 0);
@@ -25,34 +25,31 @@ LokiPort:hover {
 }
 
 .outline-border {
-    min-width: 11px;
-    min-height: 11px;
-    width: 11px;
-    height: 11px;
-    padding: 1px;
-    border-radius: 6px;
+    min-width: 15px;
+    min-height: 13px;
+    width: 15px;
+    height: 13px;
     border-width: 1px;
-    border-color: crimson;
+    border-radius: 0px 13px 13px 0px;
     align-items: center;
     justify-content: center;
 }
 
 .outline-border.hover {
-    border-color: white;
-    border-width: 2px;
+    border-color: lightcyan;
 }
+
 
 .cap {
     align-self: center;
     justify-content: center;
-    width: 5px;
-    height: 5px;
-    border-radius: 3px;
+    width: 9px;
+    height: 7px;
+    border-radius: 0px 3px 3px 0px;
     border-width: 0;
-    background-color: crimson;
 }
 
 
 .cap.hover {
-    background-color: white;
+    background-color: lightcyan;
 }
