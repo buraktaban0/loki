@@ -153,6 +153,9 @@ namespace Loki.Editor
 
 		public override void HandleEvent(EventBase evt)
 		{
+			if (isDestroyed)
+				return;
+
 			if (state == State.Closed)
 			{
 				base.HandleEvent(evt);
@@ -168,10 +171,12 @@ namespace Loki.Editor
 			}
 			else if (evt.eventTypeId == MouseUpEvent.TypeId())
 			{
+				var upEvt = evt as MouseUpEvent;
 				this.ReleaseMouse();
 
 				if (candidatePort == null)
 				{
+					graphView.OnEdgeDroppedFree(fromPort, upEvt.mousePosition);
 					DestroySelf();
 				}
 				else
@@ -186,7 +191,7 @@ namespace Loki.Editor
 		public void DestroySelf()
 		{
 			ReleaseEligiblePorts();
-			
+
 			isDestroyed = true;
 			this.RemoveFromHierarchy();
 			fromPort?.DisconnectEdge(this);
@@ -285,7 +290,7 @@ namespace Loki.Editor
 		{
 			eligiblePorts = graphView.CollectEligiblePorts(fromPort);
 
-			
+
 			foreach (var port in eligiblePorts)
 			{
 				port.RegisterCallback<MouseEnterEvent>(SetCandidatePort);
@@ -298,8 +303,8 @@ namespace Loki.Editor
 			if (eligiblePorts == null)
 				return;
 
-			graphView?.ReleaseEligiblePorts();	
-			
+			graphView?.ReleaseEligiblePorts();
+
 			foreach (var port in eligiblePorts)
 			{
 				port.UnregisterCallback<MouseEnterEvent>(SetCandidatePort);

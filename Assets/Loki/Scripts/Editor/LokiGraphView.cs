@@ -1,13 +1,21 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using Loki.Editor;
 using Loki.Editor.Adapters;
+using Loki.Runtime.Utility;
+using Unity.Collections;
+using Unity.Mathematics;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Debug = UnityEngine.Debug;
+using Object = UnityEngine.Object;
 
 public class TestClass
 {
@@ -17,7 +25,7 @@ public class TestClass
 
 public class LokiGraphView : GraphView
 {
-	private static readonly string STYLE_SHEET_PATH = "Assets/Loki/Res/StyleSheets/LokiStyle.uss";
+	private static readonly string STYLE_SHEET_PATH = "StyleSheets/LokiStyle.uss";
 
 
 	protected override bool canPaste              => true;
@@ -30,8 +38,21 @@ public class LokiGraphView : GraphView
 	public new List<LokiPort> ports => this.Query<LokiPort>().ToList();
 	public new List<LokiEdge> edges => this.Query<LokiEdge>().ToList();
 
+	public SearchWindowProvider searchWindowProvider;
+
+
+	public class c0
+	{
+	}
+
+	public class c1 : c0
+	{
+	}
+
+
 	public LokiGraphView()
 	{
+
 		this.AddManipulator(new ClickSelector());
 		this.AddManipulator(new ContentDragger());
 		this.AddManipulator(new SelectionDragger());
@@ -39,8 +60,11 @@ public class LokiGraphView : GraphView
 
 		SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale * 2f);
 
-		var styleSheet = EditorGUIUtility.Load(STYLE_SHEET_PATH) as StyleSheet;
+		var styleSheet = LokiResources.Get<StyleSheet>(STYLE_SHEET_PATH);
 		styleSheets.Add(styleSheet);
+
+		searchWindowProvider = ScriptableObject.CreateInstance<SearchWindowProvider>();
+		searchWindowProvider.Prepare();
 
 		var node = new Node();
 
@@ -79,15 +103,11 @@ public class LokiGraphView : GraphView
 
 	public List<LokiPort> CollectEligiblePorts(LokiPort fromPort)
 	{
-		Debug.Log(fromPort.node == null); 
-		
 		var otherPorts = ports.Where(p => p != fromPort).ToList();
-		Debug.Log("other" + otherPorts.Count);
 
 		var eligiblePorts = otherPorts.Where(port => port.node != fromPort.node)
 		                              .ToList();
 
-		Debug.Log(eligiblePorts.Count);
 
 		foreach (var port in ports.Except(eligiblePorts).ToList())
 		{
@@ -103,5 +123,19 @@ public class LokiGraphView : GraphView
 		{
 			port.active = true;
 		}
+	}
+
+	public void OnEdgeDroppedFree(LokiPort fromPort, Vector2 mousePos)
+	{
+		mousePos = GUIUtility.GUIToScreenPoint(mousePos);
+		Debug.Log("a");
+		searchWindowProvider.fromPort = fromPort;
+		SearchWindow.Open(new SearchWindowContext(mousePos), searchWindowProvider);
+		Debug.Log("b");
+	}
+
+	public void OnDestroy()
+	{
+		Object.DestroyImmediate(searchWindowProvider);
 	}
 }

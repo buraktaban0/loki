@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -40,7 +41,18 @@ namespace Loki.Editor.Utility
 			var exec = element.schedule.Execute(action);
 			exec.ExecuteLater(delayMs);
 		}
-		
+		public static string SplitCamelCase( this string str )
+		{
+			return Regex.Replace( 
+				Regex.Replace( 
+					str, 
+					@"(\P{Ll})(\P{Ll}\p{Ll})", 
+					"$1 $2" 
+				), 
+				@"(\p{Ll})(\P{Ll})", 
+				"$1 $2" 
+			);
+		}
 		
 		
 	}

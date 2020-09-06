@@ -37,6 +37,8 @@ namespace UniNode.Scripts.Editor
 		private void OnDestroy()
 		{
 			Debug.Log("LokiGraphWindow closed");
+
+			_graphView?.OnDestroy();
 		}
 
 
@@ -50,7 +52,7 @@ namespace UniNode.Scripts.Editor
 		private void SetupGraphView()
 		{
 			_graphView = new LokiGraphView();
-			
+
 			_graphView.StretchToParentSize();
 
 			rootVisualElement.Add(_graphView);
