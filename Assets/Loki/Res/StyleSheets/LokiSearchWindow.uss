@@ -1,5 +1,52 @@
-Label {
-    font-size: 20px;
-    -unity-font-style: bold;
-    color: rgb(68, 138, 255);
+ListView {
+    background-color: rgb(34, 34, 34);
+}
+
+.list-item {
+    justify-content: center;
+    padding-left: 4px;
+}
+
+.list-item-label {
+    -unity-text-align: middle-left;
+}
+
+.header-container {
+    flex-shrink: 1;
+    background-color: rgb(38, 38, 38);
+}
+
+.search-title-label {
+    font-size: 13px;
+    -unity-text-align: middle-center;
+    color: rgb(231, 231, 231);
+    background-color: rgb(29, 29, 29);
+    height: 20px;
+}
+
+.search-bar-row {
+    flex-direction: row;
+    padding: 4px;
+    background-color: rgb(38, 38, 38);
+    align-items: center;
+}
+
+.search-bar-icon {
+    width: 20px;
+    height: 20px;
+    background-image: url('/Assets/Loki/Res/search.png');
+}
+
+.search-field {
+    height: 20px;
+    width: auto;
+    flex-grow: 1;
+}
+
+
+.page-container {
+    flex-grow: 1;
+    flex-direction: row;
+    align-items: flex-start;
+    background-color: rgb(34, 34, 34);
 }

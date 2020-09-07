@@ -41,18 +41,8 @@ public class LokiGraphView : GraphView
 	public SearchWindowProvider searchWindowProvider;
 
 
-	public class c0
-	{
-	}
-
-	public class c1 : c0
-	{
-	}
-
-
 	public LokiGraphView()
 	{
-
 		this.AddManipulator(new ClickSelector());
 		this.AddManipulator(new ContentDragger());
 		this.AddManipulator(new SelectionDragger());
@@ -128,6 +118,10 @@ public class LokiGraphView : GraphView
 	public void OnEdgeDroppedFree(LokiPort fromPort, Vector2 mousePos)
 	{
 		mousePos = GUIUtility.GUIToScreenPoint(mousePos);
+
+		LokiSearchWindow.Open(new LokiSearchTreeProvider(), mousePos);
+
+		return;
 		Debug.Log("a");
 		searchWindowProvider.fromPort = fromPort;
 		SearchWindow.Open(new SearchWindowContext(mousePos), searchWindowProvider);

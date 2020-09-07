@@ -1,10 +1,15 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="root" style="flex-shrink: 1; background-color: rgb(38, 38, 38);">
-        <ui:Label text="Search" name="title" style="font-size: 13px; -unity-text-align: middle-center; color: rgb(231, 231, 231); background-color: rgb(29, 29, 29); height: 20px;" />
-        <ui:VisualElement name="search-row" style="flex-direction: row; padding-left: 4px; padding-right: 4px; padding-top: 4px; padding-bottom: 4px; background-color: rgb(38, 38, 38); align-items: center;">
-            <ui:VisualElement name="search-icon" style="width: 20px; height: 20px; background-image: url(&apos;/Assets/Loki/Res/search.png&apos;);" />
-            <ui:TextField picking-mode="Ignore" text="&#x9;" name="search-field" style="height: 20px; width: auto; flex-grow: 1;" />
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements"
+         noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="header-container" class="header-container">
+        <Style src="/Assets/Loki/Res/StyleSheets/LokiSearchWindow.uss"/>
+        <ui:Label text="Search" name="title" class="search-title-label"/>
+        <ui:VisualElement name="search-row" class="search-bar-row">
+            <ui:VisualElement name="search-icon" class="search-bar-icon"/>
+            <ui:TextField picking-mode="Ignore" name="search-field" class="search-field"/>
         </ui:VisualElement>
-        <ui:ListView focusable="True" />
+        <ui:VisualElement name="page-container" class="page-container">
+
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
