@@ -5,6 +5,9 @@ EditorUserSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 4
   m_ConfigSettings:
+    UIBuilder.EditorExtensionModeKey:
+      value: 37434103
+      flags: 0
     lightmappingDeviceAndPlatform:
       value: 53
       flags: 0
