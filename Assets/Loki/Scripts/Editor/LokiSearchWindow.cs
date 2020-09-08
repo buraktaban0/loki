@@ -174,17 +174,23 @@ public class LokiSearchWindow : EditorWindow
 		var text = evt.newValue;
 
 		if (string.IsNullOrEmpty(text))
+		{
+			labelInfo.text = "";
 			return;
+		}
 
 		text = text.Trim();
 		var keywords = text.Split(' ');
 
 		var a = string.Join("_", keywords);
 
-		
+
 		var searchResults = rootEntry.Query(keywords);
+		int count = searchResults.Count;
 
 		Debug.Log(a + " - " + searchResults.Count + " results.");
+
+		labelInfo.text = (count == 0 ? "No" : count.ToString()) + (count > 1 ? " results" : " result") + " found.";
 	}
 
 	private void OnClickEntry(MouseUpEvent evt)

@@ -20,21 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6ff2996-1f46-41af-b7c9-4a3dcb42f3a6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Bırak(1).fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Bırak(1).fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/material-right-arrow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/material-right-arrow.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/AhoCorasick.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/bırak.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/bırak.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiSearchWindow.uss" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiSearchWindow.uss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiSearchWindow.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiSearchWindow.uxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchEntry.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchTreeProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchTreeProvider.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchWindow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/LokiNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/LokiNode.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,9 +96,9 @@
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/LokiNode.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiSearchWindow.uss" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/AhoCorasick.cs" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchWindow.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchTreeProvider.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchEntry.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchWindow.cs" />
       </list>
     </option>
   </component>
@@ -171,7 +157,7 @@
       <workItem from="1599387537281" duration="25970000" />
       <workItem from="1599463909308" duration="4438000" />
       <workItem from="1599501706347" duration="6753000" />
-      <workItem from="1599584792435" duration="13639000" />
+      <workItem from="1599584792435" duration="14173000" />
     </task>
     <servers />
   </component>
