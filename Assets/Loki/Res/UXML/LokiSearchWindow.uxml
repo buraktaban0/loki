@@ -1,15 +1,19 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements"
-         xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements"
-         noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="header-container" class="header-container">
-        <Style src="/Assets/Loki/Res/StyleSheets/LokiSearchWindow.uss"/>
-        <ui:Label text="Search" name="title" class="search-title-label"/>
-        <ui:VisualElement name="search-row" class="search-bar-row">
-            <ui:VisualElement name="search-icon" class="search-bar-icon"/>
-            <ui:TextField picking-mode="Ignore" name="search-field" class="search-field"/>
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="header-container" class="header-container" style="flex-grow: 0; flex-shrink: 1;">
+        <Style src="/Assets/Loki/Res/StyleSheets/LokiSearchWindow.uss" />
+        <ui:Label text="Search" name="title" class="search-title-label" />
+        <ui:VisualElement name="search-row" class="search-bar-row" style="background-color: rgb(36, 36, 36);">
+            <ui:VisualElement name="search-icon" class="search-bar-icon" />
+            <ui:TextField picking-mode="Ignore" name="search-field" class="search-field" />
         </ui:VisualElement>
-        <ui:VisualElement name="page-container" class="page-container">
-
-        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="info-container" class="info-container">
+        <Style src="/Assets/Loki/Res/StyleSheets/LokiSearchWindow.uss" />
+        <ui:Label name="label-info" class="label-info" />
+    </ui:VisualElement>
+    <ui:VisualElement name="page-container" class="page-container">
+        <Style src="/Assets/Loki/Res/StyleSheets/LokiSearchWindow.uss" />
+        <ui:VisualElement name="page0-container" class="page0-container" />
+        <ui:VisualElement name="page1-container" class="page1-container" />
     </ui:VisualElement>
 </ui:UXML>

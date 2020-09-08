@@ -20,17 +20,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6ff2996-1f46-41af-b7c9-4a3dcb42f3a6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchTreeProvider.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchTreeProvider.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Bırak(1).fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Bırak(1).fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/material-right-arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Res/material-right-arrow.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/AhoCorasick.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/bırak.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/bırak.fbx.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/riderModule.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiSearchWindow.uss" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiSearchWindow.uss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiSearchWindow.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiSearchWindow.uxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchEntry.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchTreeProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchTreeProvider.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchWindow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/LokiNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/LokiNode.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,9 +62,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Settings/LokiSettings.cs" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNode.cs" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/LokiNode.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Stylesheets/LokiStyle.uss" />
         <option value="$PROJECT_DIR$/Assets/Loki/Res/Stylesheets/LokiStyle.uss" />
         <option value="$PROJECT_DIR$/Assets/Loki/Res/Stylesheets/LokiNodeView.uss" />
@@ -101,14 +102,17 @@
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiEdge.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Utility/LokiConverter.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/SearchWindowProvider.cs" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchEntry.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiContentProvider.cs" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchTreeProvider.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiSearchWindow.uxml" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNode.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/LokiNode.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiSearchWindow.uss" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/AhoCorasick.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchWindow.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchTreeProvider.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchEntry.cs" />
       </list>
     </option>
   </component>
@@ -125,7 +129,7 @@
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.C#" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
@@ -167,6 +171,7 @@
       <workItem from="1599387537281" duration="25970000" />
       <workItem from="1599463909308" duration="4438000" />
       <workItem from="1599501706347" duration="6753000" />
+      <workItem from="1599584792435" duration="13639000" />
     </task>
     <servers />
   </component>
@@ -197,12 +202,12 @@
     </state>
     <state x="-1191" y="23" key="RiderGenerateDialog/-1920.-225.1920.1080/0.0.1792.1120@-1920.-225.1920.1080" timestamp="1599037672955" />
     <state x="729" y="239" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1599310710012" />
-    <state x="514" y="221" key="SettingsEditor" timestamp="1599341521780">
+    <state x="514" y="221" key="SettingsEditor" timestamp="1599591761483">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1406" y="5" key="SettingsEditor/-1920.-225.1920.1080/0.0.1792.1120@-1920.-225.1920.1080" timestamp="1599032787292" />
     <state x="-1451" y="-46" key="SettingsEditor/-1920.-225.1920.1080/0.23.1792.1026@-1920.-225.1920.1080" timestamp="1599031794078" />
-    <state x="514" y="221" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1599341521780" />
+    <state x="514" y="221" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1599591761483" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1599418762120">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

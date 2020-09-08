@@ -43,6 +43,7 @@
                 <e p="SerializableNodeView.cs" t="Include" />
               </e>
               <e p="Utility" t="Include">
+                <e p="AhoCorasick.cs" t="Include" />
                 <e p="LokiAssetHandler.cs" t="Include" />
                 <e p="LokiEditorUtility.cs" t="Include" />
                 <e p="LokiGeometryUtility.cs" t="Include" />

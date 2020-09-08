@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class LokiNode
+namespace Loki.Runtime
 {
+	public abstract class LokiNode
+	{
+			
+		
+	}
+	
 }
