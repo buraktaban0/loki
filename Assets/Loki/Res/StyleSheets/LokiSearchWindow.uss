@@ -49,24 +49,6 @@
     flex-grow: 1;
 }
 
-.page1-container {
-    flex-shrink: 0;
-    flex-grow: 1;
-    background-color: rgb(29, 29, 29);
-    width: 350px;
-    max-width: 350px;
-    min-width: 350px;
-}
-
-.page0-container {
-    flex-shrink: 0;
-    flex-grow: 1;
-    background-color: rgb(29, 29, 29);
-    width: 350px;
-    max-width: 350px;
-    min-width: 350px;
-}
-
 .page-container {
     flex-shrink: 0;
     flex-grow: 1;

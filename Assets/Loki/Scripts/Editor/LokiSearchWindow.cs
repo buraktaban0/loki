@@ -16,6 +16,8 @@ public class LokiSearchWindow : EditorWindow
 {
 	private static readonly Vector2 size = new Vector2(300, 450);
 
+	private static readonly int ITEM_HEIGHT = 20;
+
 	private static void ClosePresentWindows()
 	{
 		GetWindow<LokiSearchWindow>().Close();
@@ -58,17 +60,12 @@ public class LokiSearchWindow : EditorWindow
 
 	private VisualElement pageContainer;
 
-	private VisualElement page0Container;
-	private VisualElement page1Container;
-
-	private ListView list0;
-	private ListView list1;
-
 	private LokiSearchEntry rootEntry;
-	private LokiSearchEntry currentRootEntry;
-	public Dictionary<string, LokiSearchEntry> entries;
+	
 
-	private LokiSearchEntry[] values0;
+	private List<ListView> pageStack = new List<ListView>(8);
+
+	private int currentPage = 0;
 
 	public void OnEnable()
 	{
@@ -90,25 +87,6 @@ public class LokiSearchWindow : EditorWindow
 		textField.RegisterCallback<ChangeEvent<string>>(OnSearchTextChanged);
 
 		pageContainer = rootVisualElement.Q("page-container");
-		page0Container = rootVisualElement.Q("page0-container");
-		page1Container = rootVisualElement.Q("page1-container");
-
-		page0Container.style.width = size.x;
-		page0Container.style.minWidth = size.x;
-		page0Container.style.maxWidth = size.x;
-
-		page1Container.style.width = size.x;
-		page1Container.style.minWidth = size.x;
-		page1Container.style.maxWidth = size.x;
-
-		list0 = new ListView(null, 20, MakeEntryElement, BindEntryElement);
-		list1 = new ListView(null, 20, MakeEntryElement, BindEntryElement);
-
-		list0.AddToClassList("search-list");
-		list1.AddToClassList("search-list");
-
-		page0Container.Add(list0);
-		page1Container.Add(list1);
 
 
 		this.Focus();
@@ -127,43 +105,48 @@ public class LokiSearchWindow : EditorWindow
 		var treeRoot = provider.GetEntryTree();
 		rootEntry = treeRoot;
 
-		currentRootEntry = treeRoot;
-		entries = treeRoot.children;
-
-		SetupPage(list0, treeRoot);
 
 		textFieldFocusController.Focus();
 	}
 
 
-	private void AnimatePageContainer(int i)
+	private ListView GetOrCreateList(LokiSearchEntry entry, int pageIndex)
 	{
-		Vector3 pos = i == 0 ? Vector3.zero : new Vector3(-size.x, 0f, 0f);
+		if (pageIndex < pageStack.Count)
+		{
+			var existingList = pageStack[pageIndex];
+			BindList(existingList, entry);
+			return existingList;
+		}
 
-		int duration = 300; // ms
-		var anim = pageContainer.experimental.animation.Position(pos, duration).Ease(Easing.OutQuad);
+		var listView = new ListView(null, ITEM_HEIGHT, MakeEntryElement, BindEntryElement);
+		listView.AddToClassList("search-list");
+		listView.showBorder = false;
+
+		pageContainer.Add(listView);
+		pageStack.Add(listView);
+
+		BindList(listView, entry);
+
+		return listView;
+	}
+
+	private void BindList(ListView listView, LokiSearchEntry entry)
+	{
+		listView.userData = entry;
+
+		listView.Refresh();
+	}
+
+
+	private void AnimatePageContainer(int pageIndex)
+	{
+		Vector3 to = Vector3.left * (size.x * pageIndex);
+		int duration = 200; // ms
+		var anim = pageContainer.experimental.animation.Position(to, duration).Ease(Easing.OutQuad);
 
 		canInteract = false;
 		anim.OnCompleted(() => { canInteract = true; });
-
-		textFieldFocusController.Focus();
-	}
-
-	private void SetupPage(ListView page, LokiSearchEntry root)
-	{
-		var items = root.children.Values.ToArray();
-		items = items.OrderBy(entry => entry.isGroup ? 0 : 1).ToArray();
-
-
-		page.itemsSource = items;
-		page.makeItem = MakeEntryElement;
-		page.bindItem = BindEntryElement;
-		page.itemHeight = 20;
-		page.showBorder = true;
-
-		values0 = items;
-
-		page.Refresh();
 
 		textFieldFocusController.Focus();
 	}
@@ -203,10 +186,10 @@ public class LokiSearchWindow : EditorWindow
 		var el = evt.target as VisualElement;
 		var group = (LokiSearchEntry) el.userData;
 
-		SetupPage(list1, group);
+
 		AnimatePageContainer(1);
 
-		Debug.Log("group " + group.visibleName);
+		Debug.Log("group " + group.name);
 	}
 
 	private void BindEntryElement(VisualElement el, int i)
@@ -216,7 +199,7 @@ public class LokiSearchWindow : EditorWindow
 		el.userData = entry;
 
 		var lbl = el.Q<Label>();
-		lbl.text = entry.visibleName;
+		lbl.text = entry.name;
 
 		var arrowImg = el.Q<Image>();
 
@@ -227,8 +210,7 @@ public class LokiSearchWindow : EditorWindow
 		{
 			if (arrowImg == null)
 			{
-				arrowImg = new Image();
-				arrowImg.pickingMode = PickingMode.Ignore;
+				arrowImg = new Image {pickingMode = PickingMode.Ignore};
 				arrowImg.AddToClassList("group-entry-icon");
 				el.Insert(0, arrowImg);
 			}
@@ -250,10 +232,11 @@ public class LokiSearchWindow : EditorWindow
 	{
 		var el = new VisualElement();
 		el.AddToClassList("list-item");
-		var lbl = new Label();
-		lbl.pickingMode = PickingMode.Ignore;
+
+		var lbl = new Label {pickingMode = PickingMode.Ignore};
 		lbl.AddToClassList("list-item-label");
 		el.Add(lbl);
+
 		return el;
 	}
 

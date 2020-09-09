@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Loki.Editor.Utility;
 
 namespace Loki.Editor
 {
@@ -24,6 +25,12 @@ namespace Loki.Editor
 
 		private readonly HashSet<string> set = new HashSet<string>();
 
+		private Type type;
+
+		private string[] keywords;
+
+		private Trie trie;
+		
 		public LokiFilter(string filter)
 		{
 			set.Add(filter);
@@ -48,6 +55,7 @@ namespace Loki.Editor
 		{
 			set.Add(filter);
 		}
+
 
 		public void Add(IEnumerable<string> filters) => set.UnionWith(filters);
 

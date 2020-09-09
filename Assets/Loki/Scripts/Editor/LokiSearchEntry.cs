@@ -15,28 +15,26 @@ namespace Loki.Editor
 	{
 		public LokiSearchEntry parent;
 
-		public string visibleName = "";
 		public string name;
 
 		public object userData;
 
-		public Dictionary<string, LokiSearchEntry> children = new Dictionary<string, LokiSearchEntry>();
+		public List<LokiSearchEntry> children = new List<LokiSearchEntry>();
 
-		public bool isGroup;
-
-		public bool hasChildren => children.Any();
+		public bool isGroup => children.Count > 0;
 
 		public void Add(LokiSearchEntry entry)
 		{
 			entry.parent = this;
-			children.Add(entry.name, entry);
+			children.Add(entry);
 		}
 
 		public void AddRange(IEnumerable<LokiSearchEntry> entries)
 		{
 			foreach (var entry in entries)
 			{
-				children.Add(entry.name, entry);
+				entry.parent = this;
+				children.Add(entry);
 			}
 		}
 
@@ -45,7 +43,7 @@ namespace Loki.Editor
 			var kwList = keywords.ToList();
 
 			// Add the whole word too, bringing complete matches to the top by match count.
-			kwList.Add(string.Join(" ", keywords));
+			kwList.Add(string.Join(" ", kwList));
 
 			var trie = new Trie();
 			trie.Add(kwList);
@@ -59,22 +57,23 @@ namespace Loki.Editor
 		{
 			if (isGroup)
 			{
-				foreach (var entry in children.Values)
+				for (var index = 0; index < children.Count; index++)
 				{
+					var entry = children[index];
 					entry.Query(trie, entries);
 				}
 			}
 			else
 			{
-				var matches = trie.Find(visibleName);
+				var matches = trie.Find(name);
 				int matchCount = matches.Count();
 				if (matchCount > 0)
 				{
 					entries.Add(new LokiSearchQueryEntry
-					{
-						entry = this,
-						matchCount = matchCount
-					});
+					            {
+						            entry = this,
+						            matchCount = matchCount
+					            });
 				}
 			}
 
