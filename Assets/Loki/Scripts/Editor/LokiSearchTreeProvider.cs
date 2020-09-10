@@ -4,27 +4,24 @@ namespace Loki.Editor
 {
 	public class LokiSearchTreeProvider
 	{
-		public LokiSearchEntry GetEntryTree()
+		public LokiSearchTree GetEntryTree()
 		{
-			var entries = new Dictionary<string, LokiSearchEntry>()
+			var c0 = new LokiSearchTree() {name = "Burak Taban"};
+			var c1 = new LokiSearchTree() {name = "Can Yılmaz"};
+			var c2 = new LokiSearchTree() {name = "Uzay Doruk"};
+
+			var g0 = new LokiSearchTree(new List<LokiSearchTree>
 			{
-				{
-					"Test0", new LokiSearchEntry()
-					{
-						name = "Test 0", isGroup = true, children = new Dictionary<string, LokiSearchEntry>()
-						{
-							{"Child0", new LokiSearchEntry() {name = "Child 0"}},
-							{"Child1", new LokiSearchEntry() {name = "Child 1"}}
-						}
-					}
-				},
-				{"Test1", new LokiSearchEntry() {name = "Test 1"}},
-				{"Test2", new LokiSearchEntry() {name = "Test 2"}},
-			};
+				c0, c1, c2
+			}) {name = "Test Group"};
 
-			var tree = new LokiSearchEntry() {children = entries, isGroup = true};
+			var e0 = new LokiSearchTree() {name = "Loki Test Root Entry"};
+			var e1 = new LokiSearchTree() {name = "Loki Test Root Entry 2"};
 
-			return tree;
+			return new LokiSearchTree(new List<LokiSearchTree>
+			{
+				g0, e0, e1
+			});
 		}
 	}
 }

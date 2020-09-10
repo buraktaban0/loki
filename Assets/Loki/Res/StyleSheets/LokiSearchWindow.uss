@@ -1,5 +1,6 @@
 .search-list {
     flex-grow: 1;
+    background-color: rgb(29, 29, 29);
 }
 
 .list-item {
@@ -40,7 +41,7 @@
 .search-bar-icon {
     width: 20px;
     height: 20px;
-    background-image: url('../search.png');
+    background-image: url('/Assets/Loki/Res/search.png');
 }
 
 .search-field {
@@ -64,12 +65,12 @@
 }
 
 .info-container {
-    background-color: rgba(36, 36, 36, 255);
+    background-color: rgb(36, 36, 36);
     height: 18px;
 }
 
 .group-entry-icon {
     width: 18px;
     height: 18px;
-    background-image: url('../material-right-arrow.png');
+    background-image: url('/Assets/Loki/Res/material-right-arrow.png');
 }

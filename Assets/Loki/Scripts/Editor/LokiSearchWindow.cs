@@ -18,6 +18,8 @@ public class LokiSearchWindow : EditorWindow
 
 	private static readonly int ITEM_HEIGHT = 20;
 
+	private static readonly bool popup = false;
+
 	private static void ClosePresentWindows()
 	{
 		GetWindow<LokiSearchWindow>().Close();
@@ -42,7 +44,10 @@ public class LokiSearchWindow : EditorWindow
 
 		window.provider = provider;
 
-		window.ShowPopup();
+		if (popup)
+			window.ShowPopup();
+		else
+			window.Show();
 
 		window.Initialize();
 	}
@@ -60,8 +65,9 @@ public class LokiSearchWindow : EditorWindow
 
 	private VisualElement pageContainer;
 
-	private LokiSearchEntry rootEntry;
-	
+	private LokiSearchTree rootTree;
+
+	private List<LokiSearchTree> currentItems;
 
 	private List<ListView> pageStack = new List<ListView>(8);
 
@@ -81,6 +87,16 @@ public class LokiSearchWindow : EditorWindow
 		textFieldFocusController = textField.Q("unity-text-input");
 		textFieldFocusController.Focus();
 
+		rootVisualElement.RegisterCallback<KeyDownEvent>(evt =>
+		{
+			if (evt.keyCode == KeyCode.LeftArrow)
+			{
+				currentPage--;
+				GetOrCreateList(null, currentPage);
+				AnimatePageContainer(currentPage);
+			}
+		});
+
 		rootVisualElement.RegisterCallback<KeyDownEvent>(OnEscapeKeyDown);
 		textFieldFocusController.RegisterCallback<KeyDownEvent>(OnEscapeKeyDown);
 
@@ -96,54 +112,63 @@ public class LokiSearchWindow : EditorWindow
 	{
 		if (isMain)
 		{
-			this.Close();
+			if (popup)
+				this.Close();
 		}
 	}
 
 	private void Initialize()
 	{
-		var treeRoot = provider.GetEntryTree();
-		rootEntry = treeRoot;
+		rootTree = provider.GetEntryTree();
 
+		currentPage = 0;
+		GetOrCreateList(rootTree, 0);
 
 		textFieldFocusController.Focus();
 	}
 
 
-	private ListView GetOrCreateList(LokiSearchEntry entry, int pageIndex)
+	private ListView GetOrCreateList(LokiSearchTree tree, int pageIndex)
 	{
 		if (pageIndex < pageStack.Count)
 		{
 			var existingList = pageStack[pageIndex];
-			BindList(existingList, entry);
+			if (tree != null)
+				BindList(existingList, tree);
 			return existingList;
 		}
 
 		var listView = new ListView(null, ITEM_HEIGHT, MakeEntryElement, BindEntryElement);
 		listView.AddToClassList("search-list");
 		listView.showBorder = false;
+		listView.style.width = size.x;
+		listView.style.minWidth = size.x;
+		listView.style.maxWidth = size.x;
 
 		pageContainer.Add(listView);
 		pageStack.Add(listView);
 
-		BindList(listView, entry);
+		BindList(listView, tree);
 
 		return listView;
 	}
 
-	private void BindList(ListView listView, LokiSearchEntry entry)
+	private void BindList(ListView listView, LokiSearchTree tree)
 	{
-		listView.userData = entry;
+		listView.userData = tree;
+		currentItems = tree.Flatten();
+		listView.itemsSource = currentItems;
 
 		listView.Refresh();
+
+		listView.MarkDirtyRepaint();
 	}
 
 
-	private void AnimatePageContainer(int pageIndex)
+	private void AnimatePageContainer(int pageIndex, int animDuration = 200)
 	{
 		Vector3 to = Vector3.left * (size.x * pageIndex);
-		int duration = 200; // ms
-		var anim = pageContainer.experimental.animation.Position(to, duration).Ease(Easing.OutQuad);
+		var anim = pageContainer.experimental.animation.Position(to, animDuration).Ease(Easing.OutQuad);
 
 		canInteract = false;
 		anim.OnCompleted(() => { canInteract = true; });
@@ -154,52 +179,58 @@ public class LokiSearchWindow : EditorWindow
 
 	private void OnSearchTextChanged(ChangeEvent<string> evt)
 	{
-		var text = evt.newValue;
+		var text = evt.newValue.Trim();
+		if (text == evt.previousValue)
+		{
+			return;
+		}
 
 		if (string.IsNullOrEmpty(text))
 		{
 			labelInfo.text = "";
+			GetOrCreateList(rootTree, 0);
+			AnimatePageContainer(0, 1);
 			return;
 		}
 
-		text = text.Trim();
+		text = text.ToLower();
 		var keywords = text.Split(' ');
 
-		var a = string.Join("_", keywords);
+		var tree = rootTree.Clone();
 
+		tree.Filter(keywords);
 
-		var searchResults = rootEntry.Query(keywords);
-		int count = searchResults.Count;
+		GetOrCreateList(tree, 0);
+		AnimatePageContainer(0, 1);
 
-		Debug.Log(a + " - " + searchResults.Count + " results.");
-
-		labelInfo.text = (count == 0 ? "No" : count.ToString()) + (count > 1 ? " results" : " result") + " found.";
+		//labelInfo.text = (count == 0 ? "No" : count.ToString()) + (count > 1 ? " results" : " result") + " found.";
 	}
 
 	private void OnClickEntry(MouseUpEvent evt)
 	{
-		Debug.Log("entry");
 	}
 
 	private void OnClickEntryGroup(MouseUpEvent evt)
 	{
 		var el = evt.target as VisualElement;
-		var group = (LokiSearchEntry) el.userData;
+		var group = (LokiSearchTree) el.userData;
 
+		currentPage++;
+		GetOrCreateList(group, currentPage);
 
-		AnimatePageContainer(1);
+		AnimatePageContainer(currentPage);
 
-		Debug.Log("group " + group.name);
 	}
 
 	private void BindEntryElement(VisualElement el, int i)
 	{
-		var entry = values0[i];
-
+		var entry = currentItems[i];
 		el.userData = entry;
 
 		var lbl = el.Q<Label>();
 		lbl.text = entry.name;
+
+		var lblCount = el.Q<Label>("label-count");
 
 		var arrowImg = el.Q<Image>();
 
@@ -208,6 +239,8 @@ public class LokiSearchWindow : EditorWindow
 
 		if (entry.isGroup)
 		{
+			lblCount.text = entry.matchCount.ToString();
+
 			if (arrowImg == null)
 			{
 				arrowImg = new Image {pickingMode = PickingMode.Ignore};
@@ -220,6 +253,8 @@ public class LokiSearchWindow : EditorWindow
 		}
 		else
 		{
+			lblCount.text = "";
+
 			el.RemoveFromClassList("no-padding");
 			arrowImg?.RemoveFromHierarchy();
 
@@ -236,6 +271,13 @@ public class LokiSearchWindow : EditorWindow
 		var lbl = new Label {pickingMode = PickingMode.Ignore};
 		lbl.AddToClassList("list-item-label");
 		el.Add(lbl);
+
+		var lblCount = new Label {pickingMode = PickingMode.Ignore, name = "label-count"};
+		lbl.AddToClassList("list-item-label");
+		lblCount.style.right = 0f;
+		lblCount.style.unityTextAlign = TextAnchor.MiddleRight;
+		lblCount.style.marginRight = 8;
+		el.Add(lblCount);
 
 		return el;
 	}

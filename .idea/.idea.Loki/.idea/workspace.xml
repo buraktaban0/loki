@@ -20,15 +20,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6ff2996-1f46-41af-b7c9-4a3dcb42f3a6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchTree.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchTree.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/riderModule.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiSearchWindow.uss" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiSearchWindow.uss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiFilter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchEntry.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiSearchWindow.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiSearchWindow.uxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchEntry.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchEntry.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchTreeProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchTreeProvider.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchWindow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,14 +49,16 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/LokiGeometryUtility.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../zerosum/motorcycle/Assets/Scripts/JetpackController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9C9FA79E-FE9E-479A-8CBE-7A6F99F673D3/13/9edaa667/ListView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchTree.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/LokiEditorUtility.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D1BEC468-8006-4709-A5E7-13AD543E6D96/84/ded78440/SearchWindow.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2500DD07-8A54-4A69-B6C9-23861AF6CD15/01/824d81d7/GUIStyle.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/11BD515F-D2A0-4526-8509-D23726DE0F46/49/7b44f8ab/Single.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Loki/Res/Stylesheets/LokiStyle.uss" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Res/Stylesheets/LokiNodeView.uss" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiResources.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiStyle.uss" />
         <option value="$PROJECT_DIR$/../zerosum/crane-master/Assets/Scripts/CarIndicator.cs" />
@@ -98,12 +102,14 @@
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiNode.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/LokiNode.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/AhoCorasick.cs" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchTreeProvider.cs" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiSearchWindow.uss" />
         <option value="$PROJECT_DIR$/../zerosum/motorcycle/Assets/Scripts/JetpackController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchWindow.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiFilter.cs" />
         <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchEntry.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchNode.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchTreeProvider.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiSearchWindow.uss" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchTree.cs" />
+        <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchWindow.cs" />
       </list>
     </option>
   </component>
