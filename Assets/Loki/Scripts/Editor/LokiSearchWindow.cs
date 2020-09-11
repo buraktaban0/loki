@@ -87,13 +87,24 @@ public class LokiSearchWindow : EditorWindow
 		textFieldFocusController = textField.Q("unity-text-input");
 		textFieldFocusController.Focus();
 
+		textFieldFocusController.RegisterCallback<KeyDownEvent>(evt =>
+		{
+			if (evt.keyCode == KeyCode.DownArrow)
+			{
+				var list = pageStack[currentPage];
+				list.SetSelection(0);
+				list.Focus();
+			}
+		});
+
 		rootVisualElement.RegisterCallback<KeyDownEvent>(evt =>
 		{
 			if (evt.keyCode == KeyCode.LeftArrow)
 			{
-				currentPage--;
-				GetOrCreateList(null, currentPage);
-				AnimatePageContainer(currentPage);
+				if (currentPage == 0)
+					return;
+
+				MoveLeft();
 			}
 		});
 
@@ -128,6 +139,23 @@ public class LokiSearchWindow : EditorWindow
 	}
 
 
+	private void MoveRight(LokiSearchTree tree)
+	{
+		if (!canInteract)
+			return;
+
+		GetOrCreateList(tree, ++currentPage);
+		AnimatePageContainer(currentPage);
+	}
+
+	private void MoveLeft()
+	{
+		if (!canInteract || currentPage == 0)
+			return;
+		AnimatePageContainer(--currentPage);
+	}
+
+
 	private ListView GetOrCreateList(LokiSearchTree tree, int pageIndex)
 	{
 		if (pageIndex < pageStack.Count)
@@ -145,7 +173,7 @@ public class LokiSearchWindow : EditorWindow
 		listView.style.minWidth = size.x;
 		listView.style.maxWidth = size.x;
 
-		pageContainer.Add(listView);
+		listView.pageContainer.Add(listView);
 		pageStack.Add(listView);
 
 		BindList(listView, tree);
@@ -160,8 +188,6 @@ public class LokiSearchWindow : EditorWindow
 		listView.itemsSource = currentItems;
 
 		listView.Refresh();
-
-		listView.MarkDirtyRepaint();
 	}
 
 
@@ -219,7 +245,6 @@ public class LokiSearchWindow : EditorWindow
 		GetOrCreateList(group, currentPage);
 
 		AnimatePageContainer(currentPage);
-
 	}
 
 	private void BindEntryElement(VisualElement el, int i)

@@ -20,17 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6ff2996-1f46-41af-b7c9-4a3dcb42f3a6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchTree.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchTree.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiSearchWindow.uss" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Res/StyleSheets/LokiSearchWindow.uss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiSearchWindow.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Res/UXML/LokiSearchWindow.uxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchEntry.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchEntry.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchTreeProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchTreeProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/riderModule.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchWindow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,6 +164,7 @@
       <workItem from="1599584792435" duration="14173000" />
       <workItem from="1599638572825" duration="2935000" />
       <workItem from="1599664264091" duration="542000" />
+      <workItem from="1599764378715" duration="2057000" />
     </task>
     <servers />
   </component>
