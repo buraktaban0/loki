@@ -173,7 +173,7 @@ public class LokiSearchWindow : EditorWindow
 		listView.style.minWidth = size.x;
 		listView.style.maxWidth = size.x;
 
-		listView.pageContainer.Add(listView);
+		pageContainer.Add(listView);
 		pageStack.Add(listView);
 
 		BindList(listView, tree);
