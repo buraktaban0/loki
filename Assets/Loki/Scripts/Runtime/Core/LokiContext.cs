@@ -1,6 +1,5 @@
-﻿using System;
-
-namespace Loki.Runtime
+﻿
+namespace Loki.Runtime.Core
 {
 	public struct LokiContext
 	{

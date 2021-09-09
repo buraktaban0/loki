@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Loki.Tests
 {
-	[NodeMeta("Tests/Test Node 2")]
-	public class TestNode2 : Node
+	[LokiNodeMeta("Tests/Test Node 2")]
+	public class TestNode2 : LokiNode
 	{
 		protected override int    FlowInputCapacity  => Capacity.None;
 		protected override int    FlowOutputCapacity => Capacity.Single;

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿
 namespace Loki.Runtime.Core
 {
-	public abstract class Node
+	[System.Serializable]
+	public abstract class LokiNode
 	{
 		public static class Capacity
 		{
@@ -14,7 +11,11 @@ namespace Loki.Runtime.Core
 			public const int Multiple = 64;
 		}
 
-		protected Guid m_Guid = Guid.NewGuid();
+		public LokiGraph Graph { get; internal set; }
+
+		public string Guid = System.Guid.NewGuid().ToString();
+
+		public string UserIdentifier;
 
 		protected abstract int FlowInputCapacity  { get; }
 		protected abstract int FlowOutputCapacity { get; }

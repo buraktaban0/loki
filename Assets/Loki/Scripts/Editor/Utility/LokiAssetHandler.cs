@@ -1,4 +1,5 @@
 ﻿using Loki.Runtime;
+using Loki.Runtime.Core;
 using UniNode.Scripts.Editor;
 using UnityEditor;
 using UnityEditor.Callbacks;
@@ -15,7 +16,7 @@ namespace Loki.Editor.Utility
 			if (graphAsset == null)
 				return false;
 
-			LokiGraphWindow.EditGraph(graphAsset.graph);
+			LokiGraphWindow.EditGraph(graphAsset.Graph);
 
 			return true;
 		}

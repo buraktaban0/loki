@@ -7,9 +7,30 @@ using UnityEngine;
 
 namespace Loki.Runtime.Utility
 {
+	public class TypePair
+	{
+		public Type type1;
+		public Type type2;
+
+		public override bool Equals(object obj)
+		{
+			if (obj is TypePair other)
+			{
+				return other.type1 == type1 && other.type2 == type2;
+			}
+
+			return false;
+		}
+
+		public override int GetHashCode()
+		{
+			return type1.GetHashCode() ^ type2.GetHashCode();
+		}
+	}
+
 	public abstract class LokiConverter
 	{
-		private static Dictionary<Type, HashSet<Type>> implicitNumericConversions =
+		private static Dictionary<Type, HashSet<Type>> s_ImplicitNumericConversions =
 			new Dictionary<Type, HashSet<Type>>()
 			{
 				{
@@ -55,35 +76,74 @@ namespace Loki.Runtime.Utility
 				{typeof(ulong), new HashSet<Type> {typeof(float), typeof(double), typeof(decimal)}},
 			};
 
+		private static Dictionary<TypePair, LokiConverter> s_CachedConverters =
+			new Dictionary<TypePair, LokiConverter>();
+
+		private static void SetConverterCache(Type fromType, Type toType, LokiConverter converter)
+		{
+			var pair = new TypePair {type1 = fromType, type2 = toType};
+			s_CachedConverters.Add(pair, converter);
+		}
+
+		private static LokiConverter GetCachedConverter(Type fromType, Type toType)
+		{
+			var pair = new TypePair {type1 = fromType, type2 = toType};
+			if (s_CachedConverters.TryGetValue(pair, out var converter))
+			{
+				return converter;
+			}
+
+			return null;
+		}
+
 		public static LokiConverter GetConverter(Type fromType, Type toType)
 		{
-			if (fromType == toType)
-				return new NoOpConverter(fromType, toType);
+			LokiConverter cachedConverter;
+			if ((cachedConverter = GetCachedConverter(fromType, toType)) != null)
+			{
+				return cachedConverter;
+			}
 
-			if (toType.IsAssignableFrom(fromType))
-				return new NoOpConverter(fromType, toType);
+			if (fromType == toType || toType.IsAssignableFrom(fromType))
+			{
+				var converter = new NoOpConverter(fromType, toType);
+				SetConverterCache(fromType, toType, converter);
+				return converter;
+			}
 
-
-			if (!fromType.IsClass && !toType.IsClass && implicitNumericConversions.TryGetValue(fromType, out var set) &&
+			if (!fromType.IsClass && !toType.IsClass &&
+			    s_ImplicitNumericConversions.TryGetValue(fromType, out var set) &&
 			    set.Contains(toType))
 			{
-				return new NumericConverter(fromType, toType);
+				var converter = new NumericConverter(fromType, toType);
+				SetConverterCache(fromType, toType, converter);
+				return converter;
 			}
 
 			MethodInfo implicitCastMethod;
-			if ((implicitCastMethod = GetImplicitCastMethod(fromType, fromType, toType)) != null
-			    || (implicitCastMethod = GetImplicitCastMethod(toType, fromType, toType)) != null)
+			if ((implicitCastMethod = GetImplicitCastMethod(definedOn:fromType, fromType, toType)) != null
+			    || (implicitCastMethod = GetImplicitCastMethod(definedOn:toType, fromType, toType)) != null)
 			{
-				return new ImplicitConverter(fromType, toType, implicitCastMethod);
+				var converter = new ImplicitConverter(fromType, toType, implicitCastMethod);
+				SetConverterCache(fromType, toType, converter);
+				return converter;
 			}
 
 			TypeConverter tc;
 			if ((tc = TypeDescriptor.GetConverter(fromType)).CanConvertTo(toType))
 			{
-				return new TypeDescriptorConverter(fromType, toType, tc);
+				var converter = new TypeDescriptorConverter(fromType, toType, tc);
+				SetConverterCache(fromType, toType, converter);
+				return converter;
 			}
 
 			return null;
+		}
+
+		public static bool TryGetConverter(Type fromType, Type toType, out LokiConverter converter)
+		{
+			converter = GetConverter(fromType, toType);
+			return converter != null;
 		}
 
 
