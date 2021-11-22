@@ -1,6 +1,6 @@
 namespace Loki.Runtime.Core
 {
-	public struct DefaultLokiValue<T> : ILokiValue<T>
+	public struct DefaultValue<T> : ILokiValue<T>
 	{
 		public T ValueT
 		{

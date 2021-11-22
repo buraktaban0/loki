@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Loki.Runtime.Database
 {
 	[System.Serializable]
-	public class SerializableMethodInfo : ISerializationCallbackReceiver
+	public class SerializedMethodInfo : ISerializationCallbackReceiver
 	{
 		[SerializeField]
 		private string m_Type;

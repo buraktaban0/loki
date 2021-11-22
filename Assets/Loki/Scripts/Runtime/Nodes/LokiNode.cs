@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Linq;
+using Loki.Runtime.Core;
 
-namespace Loki.Runtime.Core
+namespace Loki.Runtime.Nodes
 {
 	[System.Serializable]
 	public abstract class LokiNode
@@ -19,9 +19,10 @@ namespace Loki.Runtime.Core
 
 		public string UserIdentifier;
 
-		public virtual LokiFlowGate[] FlowGates => Array.Empty<LokiFlowGate>();
-		public virtual LokiInput[]    Inputs    => Array.Empty<LokiInput>();
-		public virtual LokiOutput[]   Outputs   => Array.Empty<LokiOutput>();
+
+		public virtual LokiFlowGate[]  FlowGates => Array.Empty<LokiFlowGate>();
+		public virtual LokiParameter[] Inputs    => Array.Empty<LokiParameter>();
+		public virtual LokiParameter[] Outputs   => Array.Empty<LokiParameter>();
 
 		protected abstract string Name { get; }
 
