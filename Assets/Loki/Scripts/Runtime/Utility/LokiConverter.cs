@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Loki.Runtime.Utility
 {
-	public class TypePair
+	public struct TypePair
 	{
 		public Type type1;
 		public Type type2;
@@ -31,12 +31,12 @@ namespace Loki.Runtime.Utility
 	public abstract class LokiConverter
 	{
 		private static Dictionary<Type, HashSet<Type>> s_ImplicitNumericConversions =
-			new Dictionary<Type, HashSet<Type>>()
+			new Dictionary<Type, HashSet<Type>>
 			{
 				{
 					typeof(sbyte),
 					new HashSet<Type>
-						{typeof(short), typeof(int), typeof(long), typeof(float), typeof(double), typeof(decimal)}
+					{ typeof(short), typeof(int), typeof(long), typeof(float), typeof(double), typeof(decimal) }
 				},
 				{
 					typeof(byte),
@@ -48,7 +48,7 @@ namespace Loki.Runtime.Utility
 				},
 				{
 					typeof(short),
-					new HashSet<Type> {typeof(int), typeof(long), typeof(float), typeof(double), typeof(decimal)}
+					new HashSet<Type> { typeof(int), typeof(long), typeof(float), typeof(double), typeof(decimal) }
 				},
 				{
 					typeof(ushort),
@@ -58,12 +58,12 @@ namespace Loki.Runtime.Utility
 						typeof(decimal)
 					}
 				},
-				{typeof(int), new HashSet<Type> {typeof(long), typeof(float), typeof(double), typeof(decimal)}},
+				{ typeof(int), new HashSet<Type> { typeof(long), typeof(float), typeof(double), typeof(decimal) } },
 				{
 					typeof(uint),
-					new HashSet<Type> {typeof(long), typeof(ulong), typeof(float), typeof(double), typeof(decimal)}
+					new HashSet<Type> { typeof(long), typeof(ulong), typeof(float), typeof(double), typeof(decimal) }
 				},
-				{typeof(long), new HashSet<Type> {typeof(float), typeof(double), typeof(decimal)}},
+				{ typeof(long), new HashSet<Type> { typeof(float), typeof(double), typeof(decimal) } },
 				{
 					typeof(char),
 					new HashSet<Type>
@@ -72,8 +72,8 @@ namespace Loki.Runtime.Utility
 						typeof(double), typeof(decimal)
 					}
 				},
-				{typeof(float), new HashSet<Type> {typeof(double)}},
-				{typeof(ulong), new HashSet<Type> {typeof(float), typeof(double), typeof(decimal)}},
+				{ typeof(float), new HashSet<Type> { typeof(double) } },
+				{ typeof(ulong), new HashSet<Type> { typeof(float), typeof(double), typeof(decimal) } },
 			};
 
 		private static Dictionary<TypePair, LokiConverter> s_CachedConverters =
@@ -81,13 +81,13 @@ namespace Loki.Runtime.Utility
 
 		private static void SetConverterCache(Type fromType, Type toType, LokiConverter converter)
 		{
-			var pair = new TypePair {type1 = fromType, type2 = toType};
+			var pair = new TypePair { type1 = fromType, type2 = toType };
 			s_CachedConverters.Add(pair, converter);
 		}
 
 		private static LokiConverter GetCachedConverter(Type fromType, Type toType)
 		{
-			var pair = new TypePair {type1 = fromType, type2 = toType};
+			var pair = new TypePair { type1 = fromType, type2 = toType };
 			if (s_CachedConverters.TryGetValue(pair, out var converter))
 			{
 				return converter;
@@ -121,8 +121,8 @@ namespace Loki.Runtime.Utility
 			}
 
 			MethodInfo implicitCastMethod;
-			if ((implicitCastMethod = GetImplicitCastMethod(definedOn:fromType, fromType, toType)) != null
-			    || (implicitCastMethod = GetImplicitCastMethod(definedOn:toType, fromType, toType)) != null)
+			if ((implicitCastMethod = GetImplicitCastMethod(definedOn: fromType, fromType, toType)) != null
+			    || (implicitCastMethod = GetImplicitCastMethod(definedOn: toType, fromType, toType)) != null)
 			{
 				var converter = new ImplicitConverter(fromType, toType, implicitCastMethod);
 				SetConverterCache(fromType, toType, converter);
@@ -206,7 +206,7 @@ namespace Loki.Runtime.Utility
 
 		public override object Convert(object obj)
 		{
-			return implicitCastMethod.Invoke(null, new[] {obj});
+			return implicitCastMethod.Invoke(null, new[] { obj });
 		}
 	}
 

@@ -27,6 +27,8 @@ namespace Loki.Runtime.Core
 			set => m_Connections = value;
 		}
 
+		private Dictionary<string, LokiNode> m_NodesByGuids;
+
 #if UNITY_EDITOR
 
 		[SerializeField]
@@ -62,6 +64,17 @@ namespace Loki.Runtime.Core
 			{
 				var node = m_Nodes[i];
 				node.Graph = this;
+			}
+
+			m_NodesByGuids = m_Nodes.ToDictionary(node => node.Guid);
+
+			for (var i = 0; i < m_Connections.Count; i++)
+			{
+				var con = m_Connections[i];
+				var fromNode = m_NodesByGuids[con.FromGuid];
+				var toNode = m_NodesByGuids[con.ToGuid];
+				
+				
 			}
 		}
 	}

@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c679b9a5cb2447f48bd19c0381c0b46a, type: 3}
+  m_Script: {fileID: 0}
   m_Name: LokiDatabase
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp:Loki.Runtime.Core:LokiDatabase
   m_NodeDefinitions:
   - m_TypeName: Loki.Tests.TestNode1, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null

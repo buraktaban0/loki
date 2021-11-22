@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using Loki.Runtime.Attributes;
+using Loki.Runtime.Core;
 using Loki.Utility;
-using UnityEditor.Build;
-using UnityEditor.Build.Reporting;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 using UnityEngine;
 
-namespace Loki.Runtime.Core
+namespace Loki.Runtime.Database
 {
 	public class LokiDatabase : ScriptableObject, ISerializationCallbackReceiver //, IPreprocessBuildWithReport
 	{

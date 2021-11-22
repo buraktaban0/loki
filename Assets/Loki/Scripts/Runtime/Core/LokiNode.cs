@@ -1,4 +1,6 @@
-﻿
+﻿using System;
+using System.Linq;
+
 namespace Loki.Runtime.Core
 {
 	[System.Serializable]
@@ -17,14 +19,12 @@ namespace Loki.Runtime.Core
 
 		public string UserIdentifier;
 
-		protected abstract int FlowInputCapacity  { get; }
-		protected abstract int FlowOutputCapacity { get; }
-
-		protected bool HasFlowInput  => FlowInputCapacity >= Capacity.Single;
-		protected bool HasFlowOutput => FlowOutputCapacity >= Capacity.Single;
+		public virtual LokiFlowGate[] FlowGates => Array.Empty<LokiFlowGate>();
+		public virtual LokiInput[]    Inputs    => Array.Empty<LokiInput>();
+		public virtual LokiOutput[]   Outputs   => Array.Empty<LokiOutput>();
 
 		protected abstract string Name { get; }
 
-		public abstract void Evaluate();
+		public abstract void Process(LokiScope scope);
 	}
 }
