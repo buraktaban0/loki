@@ -4,16 +4,12 @@
 	public class LokiConnection
 	{
 		public string FromGuid;
-		public string FromField;
 		public string ToGuid;
-		public string ToField;
 
-		public LokiConnection(string fromGuid, string fromField, string toGuid, string toField)
+		public LokiConnection(string fromGuid, string toGuid)
 		{
 			FromGuid = fromGuid;
-			FromField = fromField;
 			ToGuid = toGuid;
-			ToField = toField;
 		}
 	}
 }

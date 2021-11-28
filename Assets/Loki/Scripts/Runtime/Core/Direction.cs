@@ -5,5 +5,6 @@ namespace Loki.Runtime.Core
 		None = 0,
 		Input = 1,
 		Output = 2,
+		Other = 3,
 	}
 }

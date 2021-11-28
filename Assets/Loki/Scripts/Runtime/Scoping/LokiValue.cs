@@ -2,7 +2,12 @@
 {
 	public struct LokiValue<T> : ILokiValue<T>
 	{
-		public T ValueT { get; set; }
-		
+		public T Value { get; set; }
+
+		public LokiValue(T value)
+		{
+			Value = value;
+		}
+
 	}
 }

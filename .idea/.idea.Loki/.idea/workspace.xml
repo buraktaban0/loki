@@ -20,27 +20,83 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6ff2996-1f46-41af-b7c9-4a3dcb42f3a6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiParameter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiParameter.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Nodes/MethodNode.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Nodes/MethodNode.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Scoping.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Scoping/LokiScope.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Scoping/LokiValue.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Scoping/LokiValue.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Attributes/UseRunnerAttribute.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Attributes/UseRunnerAttribute.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/ILokiGraph.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/ILokiGraph.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Exceptions.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Exceptions/RunnerNotFoundException.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Exceptions/RunnerNotFoundException.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Extensions.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Extensions/GraphExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Extensions/GraphExtensions.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Gates.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Gates/Capacity.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Gates/Capacity.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Gates/ILokiGate.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Gates/ILokiGate.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Nodes/NodeRuntimeData.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Nodes/NodeRuntimeData.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Nodes/NodeUtility.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Nodes/NodeUtility.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Runners.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Runners/ILokiRunner.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Runners/LokiRunner.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Runners/LokiRunner.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Scoping/ILokiScope.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Scoping/ILokiScope.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Utility/ExternalExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Utility/ExternalExtensions.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Utility/MultiDictionary.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Utility/MultiDictionary.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Utility/RandomString.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Utility/RandomString.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/UseCases.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/UseCases/TextureGenerator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/UseCases/TextureGenerator.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loki/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/DefaultLokiValue.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Scoping/DefaultValue.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/DefaultLokiValue.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Scoping/DefaultValue.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/ILokiValue.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Scoping/ILokiValue.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/ILokiValue.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Scoping/ILokiValue.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Nodes/LokiNode.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiNode.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Nodes/LokiNode.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiScope.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiScope.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Scoping/LokiScope.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Database/SerializableMethodInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Database/SerializedMethodInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Database/SerializableMethodInfo.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Database/SerializedMethodInfo.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Interfaces.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Nodes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Nodes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiGraphWindow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/LokiAssetHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/LokiAssetHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Attributes/InputAttribute.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Attributes/InputAttribute.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Attributes/LokiAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Attributes/LokiAttribute.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Attributes/LokiNodeMetaAttribute.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Attributes/LokiNodeMetaAttribute.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Attributes/OutputAttribute.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Attributes/OutputAttribute.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/Direction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/Direction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiConnection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiConnection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiContext.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiContext.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiExtensions.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiFieldDefinition.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiFieldDefinition.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiFlow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Runners/ILokiRunner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiFlow.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiFlowGate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Gates/LokiFlowGate.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiFlowGate.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Gates/LokiFlowGate.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiGraph.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiBehaviourGraph.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiGraph.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Nodes/ILokiNode.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiGraphAsset.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiGraphAsset.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiBehaviourGraph.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiInput.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiInput.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiNodeDefinition.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiNodeDefinition.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiOutput.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiOutput.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiParameter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Gates/LokiValueGate.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiParameter.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Gates/LokiValueGate.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Database/LokiDatabase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Database/LokiDatabase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Nodes/LokiNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Nodes/ILokiNode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Nodes/LokiNode.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Nodes/MethodNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Nodes/MethodNode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Scoping/DefaultValue.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Scoping/DefaultValue.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Scoping/ILokiValue.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Scoping/ILokiValue.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Scoping/LokiScope.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Scoping/LokiScope.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Scoping/LokiValue.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Scoping/LokiValue.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Loki/Scripts/Tests/TestMethods.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Loki/Scripts/Tests/TestMethods.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,11 +122,15 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Scoping/LokiScope.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/LokiEditorUtility.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Database/LokiDatabase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Loki/Scripts/Editor/LokiSearchTree.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Nodes/ILokiNode.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Nodes/MethodNode.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../zerosum/Merge Barista/Assets/Scripts/Inventory/InventoryManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/LokiGeometryUtility.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Loki/Scripts/Editor/Utility/LokiEditorUtility.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/992585620d64427198ddf3a0e146773313e400/73/10447769/List`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Database/LokiDatabase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/992585620d64427198ddf3a0e146773313e400/5a/4d3d4151/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -109,15 +169,8 @@
       <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Database/SerializableMethodInfo.cs" />
       <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/Direction.cs" />
       <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiFlowGate.cs" />
-      <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiFlow.cs" />
-      <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiScope.cs" />
-      <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Scoping/ScopeValue.cs" />
-      <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Scoping/LokiValue.cs" />
-      <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Scoping/LokiScope.cs" />
       <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiNode.cs" />
-      <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Builtin/MethodNode.cs" />
-      <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Nodes/LokiNode.cs" />
-      <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiParameter.cs" />
+      <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Core/LokiFlow.cs" />
       <option value="$PROJECT_DIR$/Assets/Loki/Scripts/Runtime/Nodes/MethodNode.cs" />
     </changedPaths>
   </component>
@@ -135,7 +188,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -189,8 +242,10 @@
       <workItem from="1631127798121" duration="4526000" />
       <workItem from="1631210496820" duration="11612000" />
       <workItem from="1631382038832" duration="7245000" />
-      <workItem from="1637579290590" duration="10059000" />
-      <workItem from="1637604648678" duration="6168000" />
+      <workItem from="1637579290590" duration="22797000" />
+      <workItem from="1637690398748" duration="11189000" />
+      <workItem from="1637744945591" duration="15875000" />
+      <workItem from="1638112886857" duration="8812000" />
     </task>
     <servers />
   </component>
@@ -215,5 +270,9 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

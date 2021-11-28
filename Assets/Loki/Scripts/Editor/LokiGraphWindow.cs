@@ -21,7 +21,7 @@ namespace UniNode.Scripts.Editor
 		}
 
 
-		public static void EditGraph(LokiGraph graph)
+		public static void EditGraph(LokiBehaviourGraph graph)
 		{
 			Debug.Log("Editing ");
 		}

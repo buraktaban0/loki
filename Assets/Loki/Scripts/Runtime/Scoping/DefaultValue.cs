@@ -2,7 +2,7 @@ namespace Loki.Runtime.Core
 {
 	public struct DefaultValue<T> : ILokiValue<T>
 	{
-		public T ValueT
+		public T Value
 		{
 			get => default;
 			set { }

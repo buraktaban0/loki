@@ -1,57 +1,72 @@
 ﻿using System.Linq;
 using Loki.Runtime.Core;
 using Loki.Runtime.Database;
+using Loki.Runtime.Gates;
+using Loki.Runtime.Utility;
+using UnityEngine;
+
+// ReSharper disable CoVariantArrayConversion
 
 namespace Loki.Runtime.Nodes
 {
 	[System.Serializable]
-	public class MethodNode : LokiNode
+	public class MethodNode : ILokiNode
 	{
 		public SerializedMethodInfo MethodInfo;
 
-		protected override string Name => MethodInfo.Method.Name;
+		[SerializeField]
+		private string m_Guid;
+
+		public string Guid
+		{
+			get => m_Guid;
+			set => m_Guid = value;
+		}
+
+		public string Name => MethodInfo.Method.Name;
 
 		private LokiFlowGate[] m_FlowGates;
 
-		public override LokiFlowGate[] FlowGates
-		{
-			get
-			{
-				m_FlowGates = new[]
-				{
-					new LokiFlowGate {Capacity = Capacity.Multiple, Direction = Direction.Input},
-					new LokiFlowGate {Capacity = Capacity.Single, Direction = Direction.Output}
-				};
+		public ILokiGate[] FlowGates => m_FlowGates;
 
-				return m_FlowGates;
-			}
+		private LokiValueGate[] m_InputGates;
+
+		public ILokiGate[] Inputs => m_InputGates;
+
+		private LokiValueGate[] m_OutputGates;
+
+		public ILokiGate[] Outputs => m_OutputGates;
+
+		public void InitializeRuntimeData()
+		{
+			m_FlowGates = new[]
+			              {
+				              new LokiFlowGate
+				              {
+					              Name = string.Concat("IN_", Guid), Capacity = Capacity.Multiple,
+					              Direction = Direction.Input
+				              },
+				              new LokiFlowGate
+				              {
+					              Name = string.Concat("OUT_", Guid), Capacity = Capacity.Single,
+					              Direction = Direction.Output
+				              }
+			              };
+
+			m_InputGates = LokiValueGate.ExtractInputs(MethodInfo.Method.GetParameters());
+			m_OutputGates = LokiValueGate.ExtractOutputs(MethodInfo.Method.GetParameters());
 		}
 
-		private LokiParameter[] m_InputParameters;
-
-		public override LokiParameter[] Inputs
+		public void Process(ILokiScope scope)
 		{
-			get
+			var inputValues = m_InputGates.Select(parameter => scope.GetValue(parameter.Name).Value).ToArray();
+			var retVal = MethodInfo.Method.InvokeStatic(inputValues);
+
+			if (m_OutputGates.Length > 0)
 			{
-				m_InputParameters = LokiParameter.ExtractInputs(MethodInfo.Method.GetParameters());
-				return m_InputParameters;
+				var outputGate = m_OutputGates.First();
+				scope.SetValue(outputGate.Name, new LokiValue<object>(retVal));
 			}
-		}
-
-		private LokiParameter[] m_OutputParameters;
-
-		public override LokiParameter[] Outputs
-		{
-			get
-			{
-				m_OutputParameters = LokiParameter.ExtractOutputs(MethodInfo.Method.GetParameters());
-				return m_OutputParameters;
-			}
-		}
-
-		public override void Process(LokiScope scope)
-		{
-			
 		}
 	}
 }

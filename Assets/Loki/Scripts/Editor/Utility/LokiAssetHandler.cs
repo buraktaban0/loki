@@ -11,12 +11,12 @@ namespace Loki.Editor.Utility
 		[OnOpenAsset(1)]
 		public static bool OnAssetOpened(int instanceID, int line)
 		{
-			LokiGraphAsset graphAsset = EditorUtility.InstanceIDToObject(instanceID) as LokiGraphAsset;
+			LokiGraphAsset graph = EditorUtility.InstanceIDToObject(instanceID) as LokiGraphAsset;
 
-			if (graphAsset == null)
+			if (graph == null)
 				return false;
 
-			LokiGraphWindow.EditGraph(graphAsset.Graph);
+			LokiGraphWindow.EditGraph(graph.Graph);
 
 			return true;
 		}

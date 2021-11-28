@@ -5,9 +5,8 @@ namespace Loki.Tests
 	public class TestMethods
 	{
 		[Loki]
-		public static int TestMethod1(float inputFloat, string inputString, out bool outputBoolean)
+		public static int TestMethod1(float inputFloat, string inputString, bool inputBoolean)
 		{
-			outputBoolean = true;
 			return 100;
 		}
 	}

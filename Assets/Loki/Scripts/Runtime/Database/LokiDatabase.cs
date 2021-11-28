@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Loki.Runtime.Attributes;
 using Loki.Runtime.Core;
 using Loki.Utility;
@@ -85,14 +86,12 @@ namespace Loki.Runtime.Database
 
 
 		[SerializeField]
-		private List<LokiNodeDefinition> m_NodeDefinitions;
-
-		private Dictionary<Type, LokiNodeDefinition> m_NodeDefinitionsByType;
+		private List<SerializedMethodInfo> m_MethodDefinitions;
 
 #if UNITY_EDITOR
 		private void Awake()
 		{
-			if (m_NodeDefinitions == null || m_NodeDefinitions.Count < 1)
+			if (m_MethodDefinitions == null || m_MethodDefinitions.Count < 1)
 			{
 				Initialize();
 			}
@@ -100,17 +99,19 @@ namespace Loki.Runtime.Database
 
 		private void Initialize()
 		{
-			m_NodeDefinitions = new List<LokiNodeDefinition>();
-			var lokiNodeType = typeof(LokiNode);
-			var nodeAttrType = typeof(LokiNodeMetaAttribute);
+			m_MethodDefinitions = new List<SerializedMethodInfo>();
 			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 			{
 				foreach (var type in assembly.GetTypes())
 				{
-					if (!type.IsAbstract && type.IsSubclassOf(lokiNodeType) && type.IsDefined(nodeAttrType, false))
+					foreach (var methodInfo in type.GetMethods(BindingFlags.Static)
+					                               .Where(info => info.IsStatic && !info.IsGenericMethod &&
+					                                              info.IsDefined(typeof(LokiAttribute))))
 					{
-						var def = LokiNodeDefinition.FromType(type);
-						m_NodeDefinitions.Add(def);
+						m_MethodDefinitions.Add(new SerializedMethodInfo
+						                        {
+							                        Method = methodInfo
+						                        });
 					}
 				}
 			}
@@ -126,17 +127,11 @@ namespace Loki.Runtime.Database
 
 		public void OnAfterDeserialize()
 		{
-			m_NodeDefinitionsByType = m_NodeDefinitions.ToDictionary(def => def.Type);
 		}
 
-		public LokiNodeDefinition GetDefinition(Type nodeType)
+		public Type GetRunnerTypeForGraphType(Type graphType)
 		{
-			if (m_NodeDefinitionsByType.TryGetValue(nodeType, out var def))
-			{
-				return def;
-			}
-
-			throw new Exception($"Node type is not defined in the database: {nodeType.FullName}");
+			return default;
 		}
 	}
 }
