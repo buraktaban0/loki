@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Loki.Runtime.Attributes;
 using Loki.Runtime.Core;
+using Loki.Runtime.Utility;
 using Loki.Utility;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -84,6 +85,7 @@ namespace Loki.Runtime.Database
 			return db;
 		}
 
+		[SerializeField] private TypeRelationCollection m_GraphRendererRelations;
 
 		[SerializeField]
 		private List<SerializedMethodInfo> m_MethodDefinitions;

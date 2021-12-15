@@ -1,0 +1,16 @@
+interface IGraph
+    base for all graph types
+    - guid: string
+    builtin graph type: BehaviourGraph
+    
+interface INode
+    base for all node types
+    - guid: string
+    builtin node type: MethodNode
+    
+interface IConnection
+    base for all connections between INodes
+    - guid: string
+    builtin connection type: DataConnection, FlowConnection
+
+
